@@ -1,0 +1,96 @@
+[project]
+name = "jarvis-brain-core"
+version = "0.1.0"
+description = "Educational destylat: pre-computed semantic map for Claude Code via MCP. Graph extraction + federation + FTS5 query layer + 5 MCP tools."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [
+    { name = "Dariusz Kowalski" },
+]
+keywords = ["claude-code", "mcp", "ast", "code-graph", "knowledge-graph", "fts5"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Software Development :: Documentation",
+]
+dependencies = [
+    "fastapi>=0.115",
+    "pydantic>=2.9",
+    "structlog>=24.4",
+    "networkx>=3.3",
+]
+
+[project.optional-dependencies]
+# Visualization adapter (master graph -> graphifyy HTML output).
+viz = [
+    "graphifyy==0.4.23",
+]
+# LLM extraction backends (Path A). Path B (regex skill) needs nothing extra.
+llm = [
+    "google-genai>=0.3",
+]
+# Benchmark runner needs the official Anthropic Agent SDK + an httpx client.
+benchmark = [
+    "claude-agent-sdk>=0.1",
+    "httpx>=0.27",
+]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=5.0",
+    "mypy>=1.13",
+    "ruff>=0.7",
+    # Test-only HTTP client and SQLite async driver
+    "httpx>=0.27",
+    "aiosqlite>=0.20",
+    # Pulled by viz tests
+    "graphifyy==0.4.23",
+]
+
+[project.urls]
+Homepage = "https://github.com/darco81/jarvis-brain-core"
+Articles = "https://portfolio.sdet.it/from-the-field/jarvis-brain-part-1"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "A", "C4", "RET", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+# Embedded HTML/JS template strings.
+"brain/viz/insights_wrapper.py" = ["E501"]
+# Benchmark scripts: embedded data + multi-arg run options
+"benchmark/runner.py" = ["E501"]
+"benchmark/analyze.py" = ["E501"]
+# Tests: long node-id literals are clearer kept on one line
+"tests/unit/*.py" = ["E501"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Query", "fastapi.Header", "fastapi.Path", "fastapi.Body"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --tb=short"
+markers = [
+    "docker: tests that require a running Docker daemon",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["brain*"]

@@ -1,0 +1,184 @@
+{
+  "$defs": {
+    "GraphEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "$ref": "#/$defs/NodeConfidence"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "relation": {
+          "title": "Relation",
+          "type": "string",
+          "examples": [
+            "imports", "exports", "extends", "implements", "calls", "renders",
+            "uses_hook", "documents", "imports_from_parent_repo",
+            "semantically_similar_to",
+            "defines_token", "uses_token", "overrides_token", "duplicates_token"
+          ]
+        },
+        "source": {
+          "minLength": 1,
+          "title": "Source",
+          "type": "string"
+        },
+        "target": {
+          "minLength": 1,
+          "title": "Target",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "target",
+        "relation",
+        "confidence"
+      ],
+      "title": "GraphEdge",
+      "type": "object"
+    },
+    "GraphNode": {
+      "additionalProperties": false,
+      "properties": {
+        "community": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Community"
+        },
+        "file": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "File"
+        },
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "minLength": 1,
+          "title": "Kind",
+          "type": "string",
+          "examples": [
+            "class", "function", "module", "doc", "component", "ffcss_token"
+          ]
+        },
+        "line": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "name"
+      ],
+      "title": "GraphNode",
+      "type": "object"
+    },
+    "NodeConfidence": {
+      "enum": [
+        "extracted",
+        "inferred"
+      ],
+      "title": "NodeConfidence",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "built_at": {
+      "format": "date-time",
+      "title": "Built At",
+      "type": "string"
+    },
+    "built_by": {
+      "minLength": 1,
+      "title": "Built By",
+      "type": "string"
+    },
+    "edges": {
+      "items": {
+        "$ref": "#/$defs/GraphEdge"
+      },
+      "title": "Edges",
+      "type": "array"
+    },
+    "group": {
+      "minLength": 1,
+      "title": "Group",
+      "type": "string"
+    },
+    "nodes": {
+      "items": {
+        "$ref": "#/$defs/GraphNode"
+      },
+      "title": "Nodes",
+      "type": "array"
+    },
+    "repo": {
+      "minLength": 1,
+      "title": "Repo",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "v1",
+      "default": "v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "stats": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "title": "Stats",
+      "type": "object"
+    }
+  },
+  "required": [
+    "group",
+    "repo",
+    "built_at",
+    "built_by"
+  ],
+  "title": "Graph",
+  "type": "object"
+}

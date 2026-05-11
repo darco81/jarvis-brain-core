@@ -1,0 +1,1987 @@
+{
+  "schema_version": "v1",
+  "group": "example-group",
+  "repo": "example-front-c",
+  "built_by": "cc-local",
+  "built_at": "2026-04-17T18:40:09Z",
+  "nodes": [
+    {
+      "id": "example-group/example-front-c:AccountAccountOrder",
+      "kind": "class",
+      "name": "AccountAccountOrder",
+      "file": "layers/example-front-c/components/account/AccountOrder.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:AccountAccountOrderBaseInfo",
+      "kind": "class",
+      "name": "AccountAccountOrderBaseInfo",
+      "file": "layers/example-front-c/components/account/AccountOrderBaseInfo.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:AppCheckoutSuccessCelebration",
+      "kind": "class",
+      "name": "AppCheckoutSuccessCelebration",
+      "file": "layers/example-front-c/components/app/checkout/SuccessCelebration.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:AppCheckoutUserData",
+      "kind": "class",
+      "name": "AppCheckoutUserData",
+      "file": "layers/example-front-c/components/app/checkout/UserData/index.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:AtomsAppLogo",
+      "kind": "class",
+      "name": "AtomsAppLogo",
+      "file": "layers/example-front-c/components/ui/atoms/AppLogo.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:AtomsIconAddToWishlist",
+      "kind": "class",
+      "name": "AtomsIconAddToWishlist",
+      "file": "layers/example-front-c/components/ui/atoms/icon/AddToWishlist.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:AtomsIconCart",
+      "kind": "class",
+      "name": "AtomsIconCart",
+      "file": "layers/example-front-c/components/ui/atoms/icon/Cart.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:AtomsIconWarehouse",
+      "kind": "class",
+      "name": "AtomsIconWarehouse",
+      "file": "layers/example-front-c/components/ui/atoms/icon/Warehouse.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:CLAUDE.md",
+      "kind": "doc",
+      "name": "CLAUDE.md",
+      "file": "CLAUDE.md",
+      "line": 1,
+      "metadata": {
+        "framework": "markdown"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:CmsBlockCustomForm",
+      "kind": "class",
+      "name": "CmsBlockCustomForm",
+      "file": "layers/example-front-c/components/cms/block/CustomForm.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:CmsElementCustomForm",
+      "kind": "class",
+      "name": "CmsElementCustomForm",
+      "file": "layers/example-front-c/components/cms/element/CustomForm.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:FrontendNavigationPage",
+      "kind": "class",
+      "name": "FrontendNavigationPage",
+      "file": "layers/example-front-c/components/FrontendNavigationPage.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:GuardBackground",
+      "kind": "class",
+      "name": "GuardBackground",
+      "file": "layers/example-front-c/components/Guard/Background.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:GuardCard",
+      "kind": "class",
+      "name": "GuardCard",
+      "file": "layers/example-front-c/components/Guard/Card.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:GuardLoader",
+      "kind": "class",
+      "name": "GuardLoader",
+      "file": "layers/example-front-c/components/Guard/Loader.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:Layersexample-front-cApp",
+      "kind": "class",
+      "name": "Layersexample-front-cApp",
+      "file": "layers/example-front-c/app.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:Layersexample-front-cError",
+      "kind": "class",
+      "name": "Layersexample-front-cError",
+      "file": "layers/example-front-c/error.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:Layersexample-front-cPagesAccountIndex",
+      "kind": "class",
+      "name": "Layersexample-front-cPagesAccountIndex",
+      "file": "layers/example-front-c/pages/account/index.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:Layersexample-front-cPagesGuard",
+      "kind": "class",
+      "name": "Layersexample-front-cPagesGuard",
+      "file": "layers/example-front-c/pages/guard.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:LayoutLayoutFooter",
+      "kind": "class",
+      "name": "LayoutLayoutFooter",
+      "file": "layers/example-front-c/components/layout/LayoutFooter.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:LayoutLayoutHeaderTopBar",
+      "kind": "class",
+      "name": "LayoutLayoutHeaderTopBar",
+      "file": "layers/example-front-c/components/layout/LayoutHeaderTopBar.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:MoleculesSalesRepresentativeCard",
+      "kind": "class",
+      "name": "MoleculesSalesRepresentativeCard",
+      "file": "layers/example-front-c/components/ui/molecules/SalesRepresentativeCard.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:MoleculesSalesRepresentativeInline",
+      "kind": "class",
+      "name": "MoleculesSalesRepresentativeInline",
+      "file": "layers/example-front-c/components/ui/molecules/SalesRepresentativeInline.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:OrganismsAccountAccountNavigationMenu",
+      "kind": "class",
+      "name": "OrganismsAccountAccountNavigationMenu",
+      "file": "layers/example-front-c/components/ui/organisms/account/AccountNavigationMenu.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:OrganismsFeedbackLoaderCore",
+      "kind": "class",
+      "name": "OrganismsFeedbackLoaderCore",
+      "file": "layers/example-front-c/components/ui/organisms/feedback/LoaderCore.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:OrganismsFeedbackPageLoader",
+      "kind": "class",
+      "name": "OrganismsFeedbackPageLoader",
+      "file": "layers/example-front-c/components/ui/organisms/feedback/PageLoader.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:ProductLoginButton",
+      "kind": "class",
+      "name": "ProductLoginButton",
+      "file": "layers/example-front-c/components/product/LoginButton.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:ProductIncludeVatShippingInfo",
+      "kind": "class",
+      "name": "ProductIncludeVatShippingInfo",
+      "file": "layers/example-front-c/components/product/IncludeVatShippingInfo.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:ProductProperties",
+      "kind": "class",
+      "name": "ProductProperties",
+      "file": "layers/example-front-c/components/product/Properties.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:README.md",
+      "kind": "doc",
+      "name": "README.md",
+      "file": "README.md",
+      "line": 1,
+      "metadata": {
+        "framework": "markdown"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:REFACTOR.md",
+      "kind": "doc",
+      "name": "REFACTOR.md",
+      "file": "REFACTOR.md",
+      "line": 1,
+      "metadata": {
+        "framework": "markdown"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:SwContactForm",
+      "kind": "class",
+      "name": "SwContactForm",
+      "file": "layers/example-front-c/components/SwContactForm.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:SwCustomForm",
+      "kind": "class",
+      "name": "SwCustomForm",
+      "file": "layers/example-front-c/components/SwCustomForm.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:SwNewsletterForm",
+      "kind": "class",
+      "name": "SwNewsletterForm",
+      "file": "layers/example-front-c/components/SwNewsletterForm.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:SwProductCardBadges",
+      "kind": "class",
+      "name": "SwProductCardBadges",
+      "file": "layers/example-front-c/components/sw/ProductCard/Badges.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:SwProductCardStandard",
+      "kind": "class",
+      "name": "SwProductCardStandard",
+      "file": "layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:SwProductCardWishlistButton",
+      "kind": "class",
+      "name": "SwProductCardWishlistButton",
+      "file": "layers/example-front-c/components/sw/ProductCard/WishlistButton.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue",
+        "kind": "component"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:example-front-cStyleOverridePlugin",
+      "kind": "function",
+      "name": "example-front-cStyleOverridePlugin",
+      "file": "vite-plugin-example-front-c-style-override.ts",
+      "line": 51,
+      "metadata": {}
+    },
+    {
+      "id": "example-group/example-front-c:eslint.config.js",
+      "kind": "module",
+      "name": "eslint.config.js",
+      "file": "eslint.config.js",
+      "line": 1,
+      "metadata": {
+        "framework": "javascript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/app.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/app.vue",
+      "file": "layers/example-front-c/app.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/FrontendNavigationPage.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/FrontendNavigationPage.vue",
+      "file": "layers/example-front-c/components/FrontendNavigationPage.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/Guard/Background.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/Guard/Background.vue",
+      "file": "layers/example-front-c/components/Guard/Background.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/Guard/Card.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/Guard/Card.vue",
+      "file": "layers/example-front-c/components/Guard/Card.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/Guard/Loader.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/Guard/Loader.vue",
+      "file": "layers/example-front-c/components/Guard/Loader.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/SwContactForm.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/SwContactForm.vue",
+      "file": "layers/example-front-c/components/SwContactForm.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/SwCustomForm.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/SwCustomForm.vue",
+      "file": "layers/example-front-c/components/SwCustomForm.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/SwNewsletterForm.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/SwNewsletterForm.vue",
+      "file": "layers/example-front-c/components/SwNewsletterForm.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrder.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/account/AccountOrder.vue",
+      "file": "layers/example-front-c/components/account/AccountOrder.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrderBaseInfo.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/account/AccountOrderBaseInfo.vue",
+      "file": "layers/example-front-c/components/account/AccountOrderBaseInfo.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/app/checkout/SuccessCelebration.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/app/checkout/SuccessCelebration.vue",
+      "file": "layers/example-front-c/components/app/checkout/SuccessCelebration.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/app/checkout/UserData/index.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/app/checkout/UserData/index.vue",
+      "file": "layers/example-front-c/components/app/checkout/UserData/index.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/cms/block/CustomForm.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/cms/block/CustomForm.vue",
+      "file": "layers/example-front-c/components/cms/block/CustomForm.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/cms/element/CustomForm.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/cms/element/CustomForm.vue",
+      "file": "layers/example-front-c/components/cms/element/CustomForm.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/layout/LayoutFooter.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/layout/LayoutFooter.vue",
+      "file": "layers/example-front-c/components/layout/LayoutFooter.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/layout/LayoutHeaderTopBar.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/layout/LayoutHeaderTopBar.vue",
+      "file": "layers/example-front-c/components/layout/LayoutHeaderTopBar.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/product/LoginButton.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/product/LoginButton.vue",
+      "file": "layers/example-front-c/components/product/LoginButton.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/product/IncludeVatShippingInfo.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/product/IncludeVatShippingInfo.vue",
+      "file": "layers/example-front-c/components/product/IncludeVatShippingInfo.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/product/Properties.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/product/Properties.vue",
+      "file": "layers/example-front-c/components/product/Properties.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Badges.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/sw/ProductCard/Badges.vue",
+      "file": "layers/example-front-c/components/sw/ProductCard/Badges.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "file": "layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/WishlistButton.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/sw/ProductCard/WishlistButton.vue",
+      "file": "layers/example-front-c/components/sw/ProductCard/WishlistButton.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/ui/atoms/AppLogo.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/ui/atoms/AppLogo.vue",
+      "file": "layers/example-front-c/components/ui/atoms/AppLogo.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/ui/atoms/icon/AddToWishlist.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/ui/atoms/icon/AddToWishlist.vue",
+      "file": "layers/example-front-c/components/ui/atoms/icon/AddToWishlist.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/ui/atoms/icon/Cart.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/ui/atoms/icon/Cart.vue",
+      "file": "layers/example-front-c/components/ui/atoms/icon/Cart.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/ui/atoms/icon/Warehouse.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/ui/atoms/icon/Warehouse.vue",
+      "file": "layers/example-front-c/components/ui/atoms/icon/Warehouse.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/ui/molecules/SalesRepresentativeCard.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/ui/molecules/SalesRepresentativeCard.vue",
+      "file": "layers/example-front-c/components/ui/molecules/SalesRepresentativeCard.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/ui/molecules/SalesRepresentativeInline.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/ui/molecules/SalesRepresentativeInline.vue",
+      "file": "layers/example-front-c/components/ui/molecules/SalesRepresentativeInline.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/ui/organisms/account/AccountNavigationMenu.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/ui/organisms/account/AccountNavigationMenu.vue",
+      "file": "layers/example-front-c/components/ui/organisms/account/AccountNavigationMenu.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/ui/organisms/feedback/LoaderCore.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/ui/organisms/feedback/LoaderCore.vue",
+      "file": "layers/example-front-c/components/ui/organisms/feedback/LoaderCore.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/components/ui/organisms/feedback/PageLoader.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/components/ui/organisms/feedback/PageLoader.vue",
+      "file": "layers/example-front-c/components/ui/organisms/feedback/PageLoader.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/composables/useCmsHead.ts",
+      "kind": "module",
+      "name": "layers/example-front-c/composables/useCmsHead.ts",
+      "file": "layers/example-front-c/composables/useCmsHead.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/composables/useProductsInterestedOptions.ts",
+      "kind": "module",
+      "name": "layers/example-front-c/composables/useProductsInterestedOptions.ts",
+      "file": "layers/example-front-c/composables/useProductsInterestedOptions.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/composables/useSalesRepresentative.ts",
+      "kind": "module",
+      "name": "layers/example-front-c/composables/useSalesRepresentative.ts",
+      "file": "layers/example-front-c/composables/useSalesRepresentative.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/constants/accountNavigation.ts",
+      "kind": "module",
+      "name": "layers/example-front-c/constants/accountNavigation.ts",
+      "file": "layers/example-front-c/constants/accountNavigation.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/error.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/error.vue",
+      "file": "layers/example-front-c/error.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/i18n/de-DE/index.ts",
+      "kind": "module",
+      "name": "layers/example-front-c/i18n/de-DE/index.ts",
+      "file": "layers/example-front-c/i18n/de-DE/index.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/i18n/en-GB/index.ts",
+      "kind": "module",
+      "name": "layers/example-front-c/i18n/en-GB/index.ts",
+      "file": "layers/example-front-c/i18n/en-GB/index.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/i18n/pl-PL/index.ts",
+      "kind": "module",
+      "name": "layers/example-front-c/i18n/pl-PL/index.ts",
+      "file": "layers/example-front-c/i18n/pl-PL/index.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/nuxt.config.ts",
+      "kind": "module",
+      "name": "layers/example-front-c/nuxt.config.ts",
+      "file": "layers/example-front-c/nuxt.config.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/pages/account/index.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/pages/account/index.vue",
+      "file": "layers/example-front-c/pages/account/index.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/pages/guard.vue",
+      "kind": "module",
+      "name": "layers/example-front-c/pages/guard.vue",
+      "file": "layers/example-front-c/pages/guard.vue",
+      "line": 1,
+      "metadata": {
+        "framework": "vue"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/plugins/hubspot-spa-tracking.client.ts",
+      "kind": "module",
+      "name": "layers/example-front-c/plugins/hubspot-spa-tracking.client.ts",
+      "file": "layers/example-front-c/plugins/hubspot-spa-tracking.client.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/plugins/hubspot.client.ts",
+      "kind": "module",
+      "name": "layers/example-front-c/plugins/hubspot.client.ts",
+      "file": "layers/example-front-c/plugins/hubspot.client.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:layers/example-front-c/plugins/i18n-overrides.ts",
+      "kind": "module",
+      "name": "layers/example-front-c/plugins/i18n-overrides.ts",
+      "file": "layers/example-front-c/plugins/i18n-overrides.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:nuxt.config.ts",
+      "kind": "module",
+      "name": "nuxt.config.ts",
+      "file": "nuxt.config.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:shopware.d.ts",
+      "kind": "module",
+      "name": "shopware.d.ts",
+      "file": "shopware.d.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:tailwind.config.js",
+      "kind": "module",
+      "name": "tailwind.config.js",
+      "file": "tailwind.config.js",
+      "line": 1,
+      "metadata": {
+        "framework": "javascript"
+      }
+    },
+    {
+      "id": "example-group/example-front-c:useCmsHead",
+      "kind": "function",
+      "name": "useCmsHead",
+      "file": "layers/example-front-c/composables/useCmsHead.ts",
+      "line": 21,
+      "metadata": {}
+    },
+    {
+      "id": "example-group/example-front-c:useProductsInterestedOptions",
+      "kind": "function",
+      "name": "useProductsInterestedOptions",
+      "file": "layers/example-front-c/composables/useProductsInterestedOptions.ts",
+      "line": 3,
+      "metadata": {}
+    },
+    {
+      "id": "example-group/example-front-c:useSalesRepresentative",
+      "kind": "function",
+      "name": "useSalesRepresentative",
+      "file": "layers/example-front-c/composables/useSalesRepresentative.ts",
+      "line": 2,
+      "metadata": {}
+    },
+    {
+      "id": "example-group/example-front-c:vite-plugin-example-front-c-style-override.ts",
+      "kind": "module",
+      "name": "vite-plugin-example-front-c-style-override.ts",
+      "file": "vite-plugin-example-front-c-style-override.ts",
+      "line": 1,
+      "metadata": {
+        "framework": "typescript"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/app.vue",
+      "target": "example-group/example-front-c:Layersexample-front-cApp",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/app.vue",
+      "target": "example-group/example-core:layers/app-logic/stores/useDomainLanguageStore.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/stores/useDomainLanguageStore",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/app.vue",
+      "target": "example-group/example-core:layers/app-logic/utils/initializeSalesChannel.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/utils/initializeSalesChannel",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/app.vue",
+      "target": "example-group/example-core:layers/app-logic/utils/snippetHelper.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/utils/snippetHelper",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/FrontendNavigationPage.vue",
+      "target": "example-group/example-front-c:FrontendNavigationPage",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/FrontendNavigationPage.vue",
+      "target": "example-group/example-front-c:useCmsHead",
+      "relation": "uses_hook",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/FrontendNavigationPage.vue",
+      "target": "example-group/example-core:CmsPage",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/FrontendNavigationPage.vue",
+      "target": "example-group/example-core:LayoutBreadcrumbs",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/Guard/Background.vue",
+      "target": "example-group/example-front-c:GuardBackground",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/Guard/Card.vue",
+      "target": "example-group/example-front-c:GuardCard",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/Guard/Loader.vue",
+      "target": "example-group/example-front-c:GuardLoader",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/Guard/Loader.vue",
+      "target": "example-group/example-core:OrganismsLoaderCore",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwContactForm.vue",
+      "target": "example-group/example-front-c:SwContactForm",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwContactForm.vue",
+      "target": "example-group/example-core:FormLoader",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwContactForm.vue",
+      "target": "example-group/example-core:UiForgeButton",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwContactForm.vue",
+      "target": "example-group/example-core:UiForgeCheckbox",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwContactForm.vue",
+      "target": "example-group/example-core:UiForgeInput",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwContactForm.vue",
+      "target": "example-group/example-core:UiForgeSelect",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwContactForm.vue",
+      "target": "example-group/example-core:UiForgeTextArea",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwCustomForm.vue",
+      "target": "example-group/example-front-c:SwCustomForm",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwCustomForm.vue",
+      "target": "example-group/example-core:FormLoader",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwCustomForm.vue",
+      "target": "example-group/example-core:UiForgeSelect",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwNewsletterForm.vue",
+      "target": "example-group/example-front-c:SwNewsletterForm",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwNewsletterForm.vue",
+      "target": "example-group/example-core:FormLoader",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwNewsletterForm.vue",
+      "target": "example-group/example-core:UiForgeButton",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwNewsletterForm.vue",
+      "target": "example-group/example-core:UiForgeCheckbox",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwNewsletterForm.vue",
+      "target": "example-group/example-core:UiForgeInput",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/SwNewsletterForm.vue",
+      "target": "example-group/example-core:UiForgeSelect",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrder.vue",
+      "target": "example-group/example-front-c:AccountAccountOrder",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrder.vue",
+      "target": "example-group/example-core:AccountOrderAdditionalInfo",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrder.vue",
+      "target": "example-group/example-core:AccountOrderBaseInfo",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrder.vue",
+      "target": "example-group/example-core:AccountOrderDownloads",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrder.vue",
+      "target": "example-group/example-core:AccountOrderProductLineItem",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrder.vue",
+      "target": "example-group/example-core:AtomsCard",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrderBaseInfo.vue",
+      "target": "example-group/example-front-c:AccountAccountOrderBaseInfo",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrderBaseInfo.vue",
+      "target": "example-group/example-core:AccountOrderStatus",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrderBaseInfo.vue",
+      "target": "example-group/example-core:AtomsIconRefresh",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrderBaseInfo.vue",
+      "target": "example-group/example-core:AtomsIconShipping",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrderBaseInfo.vue",
+      "target": "example-group/example-core:layers/app-logic/composables/useOrderReturnBase.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/composables/useOrderReturnBase",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/account/AccountOrderBaseInfo.vue",
+      "target": "example-group/example-core:layers/app-logic/utils/date.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/utils/date",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/app/checkout/SuccessCelebration.vue",
+      "target": "example-group/example-front-c:AppCheckoutSuccessCelebration",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/app/checkout/SuccessCelebration.vue",
+      "target": "example-group/example-core:AtomsButton",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/app/checkout/UserData/index.vue",
+      "target": "example-group/example-front-c:AppCheckoutUserData",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/app/checkout/UserData/index.vue",
+      "target": "example-group/example-core:AppCheckoutStep",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/app/checkout/UserData/index.vue",
+      "target": "example-group/example-core:AppCheckoutUserDataBillingAddressSelector",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/app/checkout/UserData/index.vue",
+      "target": "example-group/example-core:AtomsSwitch",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/app/checkout/UserData/index.vue",
+      "target": "example-group/example-core:layers/app-logic/stores/useCheckoutStore.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/stores/useCheckoutStore",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/cms/block/CustomForm.vue",
+      "target": "example-group/example-front-c:CmsBlockCustomForm",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/cms/block/CustomForm.vue",
+      "target": "example-group/example-core:CmsGenericElement",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/cms/element/CustomForm.vue",
+      "target": "example-group/example-front-c:CmsElementCustomForm",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/cms/element/CustomForm.vue",
+      "target": "example-group/example-front-c:SwCustomForm",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/layout/LayoutFooter.vue",
+      "target": "example-group/example-front-c:LayoutLayoutFooter",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/layout/LayoutFooter.vue",
+      "target": "example-group/example-front-c:MoleculesSalesRepresentativeCard",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/layout/LayoutFooter.vue",
+      "target": "example-group/example-core:MoleculesAccordion",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/layout/LayoutFooter.vue",
+      "target": "example-group/example-core:MoleculesAccordionItems",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/layout/LayoutHeaderTopBar.vue",
+      "target": "example-group/example-front-c:LayoutLayoutHeaderTopBar",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/layout/LayoutHeaderTopBar.vue",
+      "target": "example-group/example-front-c:MoleculesSalesRepresentativeInline",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/layout/LayoutHeaderTopBar.vue",
+      "target": "example-group/example-core:ColorSchemeSwitcher",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/layout/LayoutHeaderTopBar.vue",
+      "target": "example-group/example-core:CurrencySwitcher",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/layout/LayoutHeaderTopBar.vue",
+      "target": "example-group/example-core:LanguageSwitcher",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/product/LoginButton.vue",
+      "target": "example-group/example-front-c:AtomsIconCart",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/product/LoginButton.vue",
+      "target": "example-group/example-front-c:ProductLoginButton",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/product/LoginButton.vue",
+      "target": "example-group/example-core:AtomsLoginButtonButton",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/product/LoginButton.vue",
+      "target": "example-group/example-core:AtomsQuantity",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/product/LoginButton.vue",
+      "target": "example-group/example-core:ProductShoppingList",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/product/IncludeVatShippingInfo.vue",
+      "target": "example-group/example-front-c:ProductIncludeVatShippingInfo",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/product/Properties.vue",
+      "target": "example-group/example-front-c:ProductProperties",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Badges.vue",
+      "target": "example-group/example-front-c:SwProductCardBadges",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Badges.vue",
+      "target": "example-group/example-core:MoleculesProductBadges",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Badges.vue",
+      "target": "example-group/example-core:layers/app-logic/composables/useProductCard.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/composables/useProductCard",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "target": "example-group/example-front-c:AtomsIconWarehouse",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "target": "example-group/example-front-c:SwProductCardBadges",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "target": "example-group/example-front-c:SwProductCardStandard",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "target": "example-group/example-front-c:SwProductCardWishlistButton",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "target": "example-group/example-core:AtomsButton",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "target": "example-group/example-core:AtomsMediaInterpreter",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "target": "example-group/example-core:SwReviewStars",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "target": "example-group/example-core:layers/app-logic/composables/useProductCard.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/composables/useProductCard",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/Standard.vue",
+      "target": "example-group/example-core:layers/app-logic/types/use-product-card.types",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/types/use-product-card.types",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/WishlistButton.vue",
+      "target": "example-group/example-front-c:AtomsIconAddToWishlist",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/WishlistButton.vue",
+      "target": "example-group/example-front-c:SwProductCardWishlistButton",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/WishlistButton.vue",
+      "target": "example-group/example-core:AtomsIconClose",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/WishlistButton.vue",
+      "target": "example-group/example-core:AtomsProductCardActionButton",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/sw/ProductCard/WishlistButton.vue",
+      "target": "example-group/example-core:layers/app-logic/composables/useProductCard.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/composables/useProductCard",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/atoms/AppLogo.vue",
+      "target": "example-group/example-front-c:AtomsAppLogo",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/atoms/AppLogo.vue",
+      "target": "example-group/example-core:AtomsImage",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/atoms/icon/AddToWishlist.vue",
+      "target": "example-group/example-front-c:AtomsIconAddToWishlist",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/atoms/icon/Cart.vue",
+      "target": "example-group/example-front-c:AtomsIconCart",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/atoms/icon/Warehouse.vue",
+      "target": "example-group/example-front-c:AtomsIconWarehouse",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/molecules/SalesRepresentativeCard.vue",
+      "target": "example-group/example-front-c:MoleculesSalesRepresentativeCard",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/molecules/SalesRepresentativeCard.vue",
+      "target": "example-group/example-front-c:useSalesRepresentative",
+      "relation": "uses_hook",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/molecules/SalesRepresentativeCard.vue",
+      "target": "example-group/example-core:AtomsIconRepPlaceholder",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/molecules/SalesRepresentativeInline.vue",
+      "target": "example-group/example-front-c:MoleculesSalesRepresentativeInline",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/molecules/SalesRepresentativeInline.vue",
+      "target": "example-group/example-front-c:useSalesRepresentative",
+      "relation": "uses_hook",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/molecules/SalesRepresentativeInline.vue",
+      "target": "example-group/example-core:AtomsIconMail2",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/molecules/SalesRepresentativeInline.vue",
+      "target": "example-group/example-core:AtomsIconPhone2",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/organisms/account/AccountNavigationMenu.vue",
+      "target": "example-group/example-front-c:OrganismsAccountAccountNavigationMenu",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/organisms/account/AccountNavigationMenu.vue",
+      "target": "example-group/example-front-c:layers/example-front-c/constants/accountNavigation.ts",
+      "relation": "imports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/organisms/account/AccountNavigationMenu.vue",
+      "target": "example-group/example-core:AtomsLogoutButton",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/organisms/feedback/LoaderCore.vue",
+      "target": "example-group/example-front-c:OrganismsFeedbackLoaderCore",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/organisms/feedback/PageLoader.vue",
+      "target": "example-group/example-front-c:OrganismsFeedbackPageLoader",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/components/ui/organisms/feedback/PageLoader.vue",
+      "target": "example-group/example-core:OrganismsLoaderCore",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/composables/useCmsHead.ts",
+      "target": "example-group/example-front-c:useCmsHead",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/composables/useCmsHead.ts",
+      "target": "example-group/example-front-c:useCmsHead",
+      "relation": "uses_hook",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/composables/useProductsInterestedOptions.ts",
+      "target": "example-group/example-front-c:useProductsInterestedOptions",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/composables/useProductsInterestedOptions.ts",
+      "target": "example-group/example-front-c:useProductsInterestedOptions",
+      "relation": "uses_hook",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/composables/useProductsInterestedOptions.ts",
+      "target": "example-group/example-core:layers/app-logic/composables/useSafeI18n.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/composables/useSafeI18n",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/composables/useSalesRepresentative.ts",
+      "target": "example-group/example-front-c:useSalesRepresentative",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/error.vue",
+      "target": "example-group/example-front-c:Layersexample-front-cError",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/error.vue",
+      "target": "example-group/example-front-c:layers/example-front-c/composables/useCmsHead.ts",
+      "relation": "imports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/account/index.vue",
+      "target": "example-group/example-front-c:Layersexample-front-cPagesAccountIndex",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/account/index.vue",
+      "target": "example-group/example-core:OrganismsAccountDashboardHero",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/account/index.vue",
+      "target": "example-group/example-core:OrganismsAccountDashboardStatCard",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/account/index.vue",
+      "target": "example-group/example-core:layers/app-core/api-types/storeApiTypes.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-core/api-types/storeApiTypes",
+        "alias": "@app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/account/index.vue",
+      "target": "example-group/example-core:layers/app-logic/composables/useCurrencyFormatter.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/composables/useCurrencyFormatter",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/guard.vue",
+      "target": "example-group/example-front-c:AtomsAppLogo",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/guard.vue",
+      "target": "example-group/example-front-c:GuardBackground",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/guard.vue",
+      "target": "example-group/example-front-c:GuardCard",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/guard.vue",
+      "target": "example-group/example-front-c:GuardLoader",
+      "relation": "renders",
+      "confidence": "inferred"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/guard.vue",
+      "target": "example-group/example-front-c:Layersexample-front-cPagesGuard",
+      "relation": "exports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/guard.vue",
+      "target": "example-group/example-core:CmsPage",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/guard.vue",
+      "target": "example-group/example-core:ColorSchemeSwitcher",
+      "relation": "renders",
+      "confidence": "inferred",
+      "metadata": {
+        "source": "template-tag",
+        "assumed_layer": "app-core"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/pages/guard.vue",
+      "target": "example-group/example-core:layers/app-logic/constants/configuration.ts",
+      "relation": "imports_from_parent_repo",
+      "confidence": "extracted",
+      "metadata": {
+        "specifier": "@app-logic/constants/configuration",
+        "alias": "@app-logic"
+      }
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/plugins/i18n-overrides.ts",
+      "target": "example-group/example-front-c:layers/example-front-c/i18n/de-DE/index.ts",
+      "relation": "imports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/plugins/i18n-overrides.ts",
+      "target": "example-group/example-front-c:layers/example-front-c/i18n/en-GB/index.ts",
+      "relation": "imports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:layers/example-front-c/plugins/i18n-overrides.ts",
+      "target": "example-group/example-front-c:layers/example-front-c/i18n/pl-PL/index.ts",
+      "relation": "imports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:nuxt.config.ts",
+      "target": "example-group/example-front-c:vite-plugin-example-front-c-style-override.ts",
+      "relation": "imports",
+      "confidence": "extracted"
+    },
+    {
+      "source": "example-group/example-front-c:vite-plugin-example-front-c-style-override.ts",
+      "target": "example-group/example-front-c:example-front-cStyleOverridePlugin",
+      "relation": "exports",
+      "confidence": "extracted"
+    }
+  ],
+  "stats": {
+    "nodes_count": 91,
+    "edges_count": 128
+  }
+}

@@ -1,0 +1,36 @@
+# Example group configuration for jarvis-brain-core.
+#
+# Copy to `groups.yml` (gitignored) and adapt to your local checkouts.
+#
+# A group is a federated cluster: one "core" repo (shared layers/composables)
+# and N "frontend" repos that import from core. The merger combines per-repo
+# graphs into a master graph + (optionally) detects cross-repo imports and
+# design-token (dt-*) DRY violations.
+
+groups:
+  example-group:
+    description: "Example group - shared core + two brand-variant fronts"
+    auth_mode: dev_tokens
+
+    repos:
+      - name: app-core
+        github: example-org/app-core
+        role: core
+        branch: main
+
+      - name: app-front-a
+        github: example-org/app-front-a
+        role: frontend
+        parent_repo: app-core
+        branch: main
+
+      - name: app-front-b
+        github: example-org/app-front-b
+        role: frontend
+        parent_repo: app-core
+        branch: main
+
+    federation:
+      enabled: true
+      detect_cross_repo_imports: true
+      detect_ffcss_tokens: false  # flip to true if you use a dt- design-token convention

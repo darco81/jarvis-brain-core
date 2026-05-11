@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+build/
+dist/
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Type checking + linting
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Coverage
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+
+# Local runtime data
+*.db
+*.sqlite
+*.sqlite3
+/data/
+/graphs/
+/vaults/
+
+# Local config (use the .example file as a template)
+/config/groups.yml
+.env
+.env.local
+
+# Benchmark local-only outputs (keep results/.gitkeep)
+/benchmark/results/*.json
+!/benchmark/results/.gitkeep
+
+# Editor temp
+*.swp
+*.swo
+*~

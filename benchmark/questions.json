@@ -1,0 +1,62 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2026-05-12",
+    "note": "Sample question set for the public educational template. The full 50-question benchmark used to evaluate the production deployment is private. Replace these with questions anchored to your own indexed group.",
+    "groups": ["example-group"],
+    "repos": ["app-core", "app-front-a", "app-front-b"],
+    "categories": 5,
+    "questions_per_category": 1,
+    "total": 5
+  },
+  "questions": [
+    {
+      "id": "Q01",
+      "category": "code_discovery",
+      "prompt": "Where is the user-session composable in app-core? Return the exact file path.",
+      "ground_truth": {
+        "expected_file": "layers/app-core/composables/useUserSession.ts",
+        "expected_node_id_contains": "useUserSession",
+        "min_accuracy_tokens": ["useUserSession", "app-core/composables"]
+      }
+    },
+    {
+      "id": "Q02",
+      "category": "cross_repo_path",
+      "prompt": "Trace the import path from app-front-a's LoginButton component to the app-core useUserSession composable. How many hops?",
+      "ground_truth": {
+        "expected_path_contains": ["example-group/app-front-a:LoginButton", "example-group/app-core:useUserSession"],
+        "expected_min_hops": 1,
+        "expected_max_hops": 4
+      }
+    },
+    {
+      "id": "Q03",
+      "category": "design_tokens",
+      "prompt": "List every dt-* token defined in app-core that app-front-a uses via uses_token edges.",
+      "ground_truth": {
+        "expected_node_kind": "ffcss_token",
+        "expected_token_prefix": "dt-",
+        "expected_origin_repo": "app-core"
+      }
+    },
+    {
+      "id": "Q04",
+      "category": "dry_violations",
+      "prompt": "Are there any duplicates_token edges between app-front-a and app-front-b that override a canonical dt-* token from app-core? Return the token names.",
+      "ground_truth": {
+        "expected_edge_relation": "duplicates_token",
+        "expected_token_prefix": "dt-"
+      }
+    },
+    {
+      "id": "Q05",
+      "category": "neighborhood",
+      "prompt": "For node example-group/app-core:useUserSession, return its 1-hop inbound + outbound neighbors with their relations.",
+      "ground_truth": {
+        "expected_node_id": "example-group/app-core:useUserSession",
+        "expected_neighbors_min": 1
+      }
+    }
+  ]
+}

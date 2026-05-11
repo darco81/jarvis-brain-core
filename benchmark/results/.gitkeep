@@ -1,0 +1,3 @@
+# results/
+
+Benchmark runs write JSON here. Empty in the public template — supply your own dataset to populate.
