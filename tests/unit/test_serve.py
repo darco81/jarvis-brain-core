@@ -160,3 +160,29 @@ async def test_unknown_group_maps_to_rpc_not_found(demo_app: FastAPI) -> None:
         {"name": "brain_graph", "arguments": {"group": "nope"}},
     )
     assert body["error"]["code"] == -32004
+
+
+@pytest.mark.asyncio
+async def test_ego_truncation_never_evicts_center(tmp_path: Path) -> None:
+    """A center whose id sorts after the cap must survive truncation."""
+    from brain.scripts.serve import _EGO_MAX_NODES, build_app
+
+    center = f"{GROUP}/zzz:Hub"  # sorts after every neighbor id
+    nodes = [{"id": center, "kind": "component", "name": "Hub", "metadata": {}}]
+    edges = []
+    for i in range(_EGO_MAX_NODES + 10):
+        nid = f"{GROUP}/aaa:N{i:04d}"
+        nodes.append({"id": nid, "kind": "function", "name": f"N{i:04d}", "metadata": {}})
+        edges.append({"source": center, "target": nid, "relation": "calls", "confidence": "extracted"})
+    master = {"nodes": nodes, "edges": edges}
+    mp = tmp_path / "graphs" / GROUP / "_master" / "graph.json"
+    mp.parent.mkdir(parents=True)
+    mp.write_text(json.dumps(master))
+    APIIndexPublisher().publish(master, tmp_path / "vaults" / GROUP / "index")
+
+    app = build_app(tmp_path)
+    out = await _tool(app, "brain_graph", {"group": GROUP, "node_id": center, "radius": 1})
+    ids = {n["id"] for n in out["nodes"]}
+    assert center in ids
+    assert out["truncated"] is True
+    assert len(out["nodes"]) == _EGO_MAX_NODES

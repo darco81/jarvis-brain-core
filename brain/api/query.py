@@ -119,7 +119,10 @@ def _search(
     """Search FTS5 index, BM25-ranked with label-heavy column weights."""
     con = sqlite3.connect(db_path)
     try:
-        safe = q.replace('"', '""')
+        # q is passed raw: it IS the FTS5 MATCH expression (the docstring
+        # advertises "exact phrase" / OR / NEAR). Doubling quotes here would
+        # silently turn phrase queries into bag-of-words matches; invalid
+        # syntax is already surfaced as 422 below.
         try:
             if repo_filter:
                 rows = con.execute(
@@ -127,7 +130,7 @@ def _search(
                     f"bm25(nodes_fts, {_BM25_WEIGHTS}) AS score FROM nodes_fts "
                     "WHERE nodes_fts MATCH ? AND repo = ? "
                     "ORDER BY score LIMIT ?",
-                    (safe, repo_filter, limit),
+                    (q, repo_filter, limit),
                 ).fetchall()
             else:
                 rows = con.execute(
@@ -135,7 +138,7 @@ def _search(
                     f"bm25(nodes_fts, {_BM25_WEIGHTS}) AS score FROM nodes_fts "
                     "WHERE nodes_fts MATCH ? "
                     "ORDER BY score LIMIT ?",
-                    (safe, limit),
+                    (q, limit),
                 ).fetchall()
         except sqlite3.OperationalError as exc:
             raise HTTPException(
