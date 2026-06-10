@@ -68,6 +68,37 @@ def _load_master_graph(graphs_base: Path, group: str) -> nx.DiGraph:
     return _load_master_graph_cached(str(path), mtime_ns)
 
 
+def shortest_path_payload(
+    graphs_base: Path, from_node: str, to_node: str, max_hops: int = 6
+) -> dict[str, Any]:
+    """Shortest path between two fully-qualified nodes on the master graph.
+
+    Shared by the GET /query/path endpoint and the brain_path MCP executor.
+    Raises HTTPException (422/404) on bad input, missing nodes, or no path.
+    """
+    if "/" not in from_node:
+        raise HTTPException(
+            422,
+            "from_node must be fully qualified (<group>/<repo>:<id>): "
+            f"{from_node}",
+        )
+    group = from_node.split("/", 1)[0]
+    g = _load_master_graph(graphs_base, group)
+
+    try:
+        path = nx.shortest_path(g, from_node, to_node)
+    except nx.NodeNotFound as err:
+        raise HTTPException(404, f"node not found: {err}") from err
+    except nx.NetworkXNoPath as err:
+        raise HTTPException(404, "no path between nodes") from err
+
+    hops = len(path) - 1
+    if hops > max_hops:
+        raise HTTPException(404, f"path exceeds max_hops={max_hops}")
+
+    return {"path": list(path), "hops": hops}
+
+
 def build_query_path_router(
     *,
     graphs_base: Path,
@@ -99,26 +130,6 @@ def build_query_path_router(
         max_hops: int = Query(6, ge=1, le=10),
         _auth: DevTokenInfo | None = Depends(auth_dep),
     ) -> dict[str, Any]:
-        if "/" not in from_node:
-            raise HTTPException(
-                422,
-                "from_node must be fully qualified (<group>/<repo>:<id>): "
-                f"{from_node}",
-            )
-        group = from_node.split("/", 1)[0]
-        g = _load_master_graph(graphs_base, group)
-
-        try:
-            path = nx.shortest_path(g, from_node, to_node)
-        except nx.NodeNotFound as err:
-            raise HTTPException(404, f"node not found: {err}") from err
-        except nx.NetworkXNoPath as err:
-            raise HTTPException(404, "no path between nodes") from err
-
-        hops = len(path) - 1
-        if hops > max_hops:
-            raise HTTPException(404, f"path exceeds max_hops={max_hops}")
-
-        return {"path": list(path), "hops": hops}
+        return shortest_path_payload(graphs_base, from_node, to_node, max_hops)
 
     return router
