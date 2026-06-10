@@ -1,6 +1,7 @@
 """Graph schema v1 - serialized form of a per-repo knowledge graph.
 
-Contract between GraphifyRunner, CC local bootstrap, and _install_graph.
+The contract both ingestion paths target (LLM extraction and the CC-local
+regex skill) and every downstream consumer reads (merger, publishers, viz).
 """
 
 from __future__ import annotations
@@ -66,7 +67,11 @@ class GraphNode(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     id: str = Field(..., min_length=1)
-    kind: str = Field(..., min_length=1)
+    kind: str = Field(
+        ...,
+        min_length=1,
+        json_schema_extra={"examples": [k.value for k in NodeKind]},
+    )
     name: str = Field(..., min_length=1)
     file: str | None = None
     line: int | None = Field(None, ge=0)
@@ -79,7 +84,10 @@ class GraphEdge(BaseModel):
 
     source: str = Field(..., min_length=1)
     target: str = Field(..., min_length=1)
-    relation: str
+    relation: str = Field(
+        ...,
+        json_schema_extra={"examples": list[Any](sorted(_ALLOWED_RELATIONS))},
+    )
     confidence: NodeConfidence
     metadata: dict[str, Any] = Field(default_factory=dict)
 

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from datetime import UTC, datetime
 from typing import Any
 
 from brain.federation.ffcss_resolver import resolve_ffcss
@@ -27,6 +28,11 @@ class FederationMerger:
         may itself contain colons - downstream parsers must use
         `namespaced.partition(":")` (NOT `split(":")`) to avoid splitting on
         embedded colons.
+
+        Given schema-valid per-repo graphs, the output validates against
+        Graph v1: repo provenance lives in `metadata._repo`/`metadata._group`
+        (GraphNode forbids extra top-level keys) and the envelope carries
+        schema_version/repo/built_at/built_by with `repo="_master"`.
         """
         nodes: list[dict[str, Any]] = []
         edges: list[dict[str, Any]] = []
@@ -38,8 +44,10 @@ class FederationMerger:
                     continue
                 new_node: dict[str, Any] = dict(n)
                 new_node["id"] = f"{ns}{n['id']}"
-                new_node["_repo"] = repo
-                new_node["_group"] = group
+                metadata = dict(n.get("metadata") or {})
+                metadata["_repo"] = repo
+                metadata["_group"] = group
+                new_node["metadata"] = metadata
                 nodes.append(new_node)
             for e in g.get("edges", []):
                 if not isinstance(e, dict) or "source" not in e or "target" not in e:
@@ -116,7 +124,25 @@ class FederationMerger:
                             edges[i] = rw
                             break
 
-        return {"version": 1, "group": group, "nodes": nodes, "edges": edges}
+        for e in edges:
+            c = e.get("confidence")
+            if isinstance(c, str):
+                e["confidence"] = c.lower()
+
+        return {
+            "schema_version": "v1",
+            "group": group,
+            "repo": "_master",
+            "built_at": datetime.now(UTC).isoformat(),
+            "built_by": "federation-merger",
+            "nodes": nodes,
+            "edges": edges,
+            "stats": {
+                "repos": len(repo_graphs),
+                "nodes": len(nodes),
+                "edges": len(edges),
+            },
+        }
 
     def pass_through_super(self, group_masters: list[tuple[str, dict[str, Any]]]) -> dict[str, Any]:
         """P1: super-master graph.
@@ -124,11 +150,22 @@ class FederationMerger:
         With 1 group: super-master = copy of group master (pass-through).
         With N>1 groups: naive union of nodes/edges (P4 adds cross-group semantic links).
         The `groups` key always contains the list of source group names.
+
+        Note: the super-master is a P1 union artifact with its own envelope
+        (`super`/`groups`), not a Graph v1 document - unlike `merge_group` output.
         """
         groups = [g for g, _ in group_masters]
+        # Strip the Graph-v1 envelope so the super-master carries exactly one
+        # envelope (version/super/groups) - leaving schema_version on the
+        # copy would misclassify it as a per-repo Graph v1 document.
+        graph_v1_envelope = {
+            "group", "schema_version", "repo", "built_at", "built_by", "stats"
+        }
         if len(group_masters) == 1:
             _, master = group_masters[0]
-            copy = {k: v for k, v in master.items() if k != "group"}
+            copy = {
+                k: v for k, v in master.items() if k not in graph_v1_envelope
+            }
             copy["version"] = 1
             copy["super"] = True
             copy["groups"] = groups

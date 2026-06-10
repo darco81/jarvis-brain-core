@@ -23,7 +23,30 @@ class BrainGraphArgs(BaseModel):
     group: str = Field(..., min_length=1, max_length=64)
     repo: str | None = Field(
         None,
-        description="repo name; None returns the group's master graph",
+        description="Optional repo filter, e.g. 'example-front'.",
+    )
+    node_id: str | None = Field(
+        None,
+        max_length=512,
+        description=(
+            "Center of an ego-graph, e.g. "
+            "'example-group/example-front:LoginButton'. Returns only nodes "
+            "within `radius` hops. Omit for a whole-graph summary "
+            "(counts per kind/repo) instead of a full dump."
+        ),
+    )
+    radius: int = Field(
+        2,
+        ge=1,
+        le=4,
+        description="Ego-graph hop radius around node_id (default 2).",
+    )
+    response_format: Literal["concise", "detailed"] = Field(
+        "concise",
+        description=(
+            "'concise' = id/name/kind per node (about 3x fewer tokens); "
+            "'detailed' adds file, line and metadata."
+        ),
     )
 
 
@@ -66,7 +89,13 @@ TOOL_DEFINITIONS: list[dict[str, Any]] = [
     {
         "name": "brain_graph",
         "description": (
-            "Return the raw graph.json for a repo (or group master if repo is null)."
+            "Structure around a node, or a graph overview. With node_id: an "
+            "ego-graph of everything within `radius` hops (default 2) - use "
+            "this to see a component's neighborhood, e.g. node_id="
+            "'example-group/example-front:LoginButton'. Without node_id: a "
+            "summary (node counts per kind and repo), never a full dump. "
+            "Start concise; switch response_format='detailed' only when you "
+            "need file/line/metadata."
         ),
         "inputSchema": BrainGraphArgs.model_json_schema(),
     },

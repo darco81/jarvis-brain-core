@@ -2,7 +2,8 @@
 
 The slug function is the single source of truth for turning a graph node id
 into a filesystem-safe, URL-safe identifier used by:
-  * `brain/publishers/wiki.py` - to place per-node pages under `/node/<slug>/`
+  * the wiki publisher (production-only) - to place per-node pages under
+    `/node/<slug>/`
   * graph.html click handler - to navigate to the same `/node/<slug>/` URL
     when a user clicks a node
 

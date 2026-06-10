@@ -3,6 +3,10 @@
 Run from the repo root:
     python -m brain.scripts.demo_ingest
 
+Pass --data-root to persist the graph + index where `brain.scripts.serve`
+can pick them up (default: a throwaway tmp dir):
+    python -m brain.scripts.demo_ingest --data-root ~/.jarvis-brain-demo
+
 What it does, in order:
     1. Writes `example-group/_master/graph.json` with a handful of synthetic
        nodes and edges under a tmp data root (the path is printed).
@@ -19,6 +23,7 @@ master graph that the production deployment serves.
 
 from __future__ import annotations
 
+import argparse
 import json
 import sqlite3
 import sys
@@ -114,8 +119,22 @@ def _shortest_path(graph: dict[str, Any], from_node: str, to_node: str) -> list[
     return list(nx.shortest_path(g, from_node, to_node))
 
 
-def main() -> int:
-    root = Path(tempfile.mkdtemp(prefix="jarvis-brain-demo-"))
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        prog="python -m brain.scripts.demo_ingest",
+        description="Build a synthetic master graph + FTS5 index and query it.",
+    )
+    parser.add_argument(
+        "--data-root",
+        type=Path,
+        default=None,
+        help="Persist graph + index here (default: throwaway tmp dir). "
+        "Use the same path with brain.scripts.serve.",
+    )
+    args = parser.parse_args(argv)
+
+    root = args.data_root or Path(tempfile.mkdtemp(prefix="jarvis-brain-demo-"))
+    root.mkdir(parents=True, exist_ok=True)
     print(f"[demo] data root: {root}")
 
     # 1. write the master graph

@@ -41,12 +41,9 @@ SIBLING_REPOS = [
     BENCHMARK_ROOT / "app-front-d",
 ]
 BRAIN_URL = os.environ.get("BRAIN_URL") or "http://localhost:8000/mcp"
+# Checked in main() only for modes that hit the brain endpoint - baseline
+# needs no token and --help must work without one.
 BRAIN_TOKEN = os.environ.get("BRAIN_DEV_TOKEN")
-if not BRAIN_TOKEN:
-    raise RuntimeError(
-        "Set BRAIN_DEV_TOKEN env var before running the benchmark. "
-        "Educational version does not ship a default token."
-    )
 
 # Conservative iteration cap - prevents runaway loops on hard questions.
 # Baseline typically needs 5-12 iterations (Grep + multiple Reads).
@@ -169,6 +166,13 @@ async def main() -> None:
     parser.add_argument("--limit", type=int, default=None, help="Run only first N questions")
     parser.add_argument("--category", default=None, help="Filter by category")
     args = parser.parse_args()
+
+    if args.mode in ("brain", "both") and not BRAIN_TOKEN:
+        raise SystemExit(
+            "Set BRAIN_DEV_TOKEN env var before running the brain arm. "
+            "Educational version does not ship a default token "
+            "(--mode baseline runs without one)."
+        )
 
     data = json.loads(Path(args.questions).read_text())
     questions = data["questions"]

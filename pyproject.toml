@@ -30,9 +30,13 @@ dependencies = [
 viz = [
     "graphifyy==0.4.23",
 ]
-# LLM extraction backends (Path A). Path B (regex skill) needs nothing extra.
+# Runnable MCP server (brain.scripts.serve).
+server = [
+    "uvicorn>=0.30",
+]
+# Path A LLM extraction backends (brain.graphify_adapter). Path B needs nothing extra.
 llm = [
-    "google-genai>=0.3",
+    "httpx>=0.27",
 ]
 # Benchmark runner needs the official Anthropic Agent SDK + an httpx client.
 benchmark = [
