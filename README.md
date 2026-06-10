@@ -60,6 +60,11 @@ uv pip install -e ".[dev]"
 # Run the in-scope tests
 pytest
 
+# See the whole method end-to-end on synthetic data: builds a master graph,
+# the FTS5 index, demonstrates the camelCase trick ('user' -> useUserSession)
+# and walks a shortest path
+python -m brain.scripts.demo_ingest
+
 # Generate an extraction prompt
 python -c "from brain.llm.prompts import build_extraction_system_prompt; \
            print(build_extraction_system_prompt(include_ffcss=True))"
@@ -68,6 +73,33 @@ python -c "from brain.llm.prompts import build_extraction_system_prompt; \
 python -c "from brain.api.mcp_tools import TOOL_DEFINITIONS; \
            import json; print(json.dumps(TOOL_DEFINITIONS, indent=2))"
 ```
+
+## Run the 5 MCP tools in Claude Code
+
+Three commands from clone to a queryable graph (no real codebase needed):
+
+```bash
+uv pip install -e ".[server]"
+
+# 1. persist the demo graph + FTS5 index
+python -m brain.scripts.demo_ingest --data-root ~/.jarvis-brain-demo
+
+# 2. serve all 5 tools over HTTP JSON-RPC (localhost only - the educational
+#    build has no auth, never expose it publicly)
+python -m brain.scripts.serve --data-root ~/.jarvis-brain-demo
+
+# 3. connect Claude Code (in another terminal, inside your project)
+claude mcp add --transport http brain http://127.0.0.1:8000/mcp
+```
+
+Then ask Claude Code something like *"use brain_query to find session
+composables"* - or index your own repos by writing schema-v1 graphs into
+`<data-root>/graphs/<group>/_master/graph.json` and rebuilding the index
+with `APIIndexPublisher`.
+
+Other scripts: `python -m brain.scripts.validate_graph <graph.json>` checks a
+graph against schema v1; `python -m brain.scripts.export_schema` regenerates
+`schemas/graph_v1.json`.
 
 To run the benchmark against your own indexed graph, see `benchmark/runner.py`. The runner requires `BRAIN_DEV_TOKEN` and `BRAIN_URL` env vars pointing at a deployment - the educational version intentionally does not ship a default token.
 
