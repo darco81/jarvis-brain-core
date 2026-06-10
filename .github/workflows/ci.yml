@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: astral-sh/setup-uv@v5
+      - name: Install
+        run: uv pip install --system -e ".[dev,server,llm]"
+      - name: pytest
+        run: python -m pytest
+      - name: mypy --strict
+        run: python -m mypy --strict brain/
+      - name: ruff
+        run: python -m ruff check .
+
+  readme-smoke:
+    # The literal commands from the README quick start - catches doc rot.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v5
+      - name: Install
+        run: uv pip install --system -e ".[dev,server,llm]"
+      - name: demo_ingest (tmp root)
+        run: python -m brain.scripts.demo_ingest
+      - name: demo_ingest --data-root + serve guard
+        run: |
+          python -m brain.scripts.demo_ingest --data-root /tmp/jb-demo
+          test -f /tmp/jb-demo/graphs/example-group/_master/graph.json
+          test -f /tmp/jb-demo/vaults/example-group/index/index.sqlite
+      - name: extraction prompt snippet
+        run: |
+          python -c "from brain.llm.prompts import build_extraction_system_prompt; \
+                     print(build_extraction_system_prompt(include_ffcss=True))" > /dev/null
+      - name: tool schemas snippet
+        run: |
+          python -c "from brain.api.mcp_tools import TOOL_DEFINITIONS; \
+                     import json; print(json.dumps(TOOL_DEFINITIONS, indent=2))" > /dev/null
+      - name: schema artifact drift
+        run: python -m brain.scripts.export_schema | diff - schemas/graph_v1.json
+
+  leak-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: gitleaks (secrets, full history)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: client-name denylist (working tree)
+        # Tree-only scan: this repo is distilled from a private client
+        # codebase and no client identifier may appear in any tracked file.
+        # History is NOT scanned here - see RELEASING.md for the manual
+        # full-history sweep run before each release.
+        run: |
+          patterns=$(grep -v '^#' .github/leak-denylist.txt | grep -v '^$' | paste -sd'|' -)
+          hits=$(git ls-files | grep -v '^.github/leak-denylist.txt$' \
+            | xargs grep -liwE "$patterns" 2>/dev/null || true)
+          if [ -n "$hits" ]; then
+            echo "::error::denylist pattern found in: $hits"
+            exit 1
+          fi
+          echo "denylist clean"

@@ -12,14 +12,24 @@
           "type": "object"
         },
         "relation": {
-          "title": "Relation",
-          "type": "string",
           "examples": [
-            "imports", "exports", "extends", "implements", "calls", "renders",
-            "uses_hook", "documents", "imports_from_parent_repo",
+            "calls",
+            "defines_token",
+            "documents",
+            "duplicates_token",
+            "exports",
+            "extends",
+            "implements",
+            "imports",
+            "imports_from_parent_repo",
+            "overrides_token",
+            "renders",
             "semantically_similar_to",
-            "defines_token", "uses_token", "overrides_token", "duplicates_token"
-          ]
+            "uses_hook",
+            "uses_token"
+          ],
+          "title": "Relation",
+          "type": "string"
         },
         "source": {
           "minLength": 1,
@@ -75,12 +85,17 @@
           "type": "string"
         },
         "kind": {
+          "examples": [
+            "class",
+            "function",
+            "module",
+            "doc",
+            "component",
+            "ffcss_token"
+          ],
           "minLength": 1,
           "title": "Kind",
-          "type": "string",
-          "examples": [
-            "class", "function", "module", "doc", "component", "ffcss_token"
-          ]
+          "type": "string"
         },
         "line": {
           "anyOf": [

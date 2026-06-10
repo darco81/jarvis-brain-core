@@ -14,7 +14,7 @@ The fix is to pre-compute the structure once and serve it as a native tool.
 
 ## Two ingestion paths
 
-**Path A: LLM extraction.** `brain/llm/prompts.py` builds the system prompt that Qwen-local (preferred, free) or Gemini (fallback) consume. Output is strict JSON, validated against the schema. Good for messy real-world code where regex breaks.
+**Path A: LLM extraction.** `brain/llm/prompts.py` builds the system prompt; `brain/graphify_adapter/` is the machinery that runs it - an `LLMBackend` protocol with three implementations (`QwenLocalBackend` against any OpenAI-compatible endpoint with a circuit breaker, `OpenRouterBackend` as the hosted fallback, `MockBackend` for tests), a `ModelRouter` that picks per job size, and a `GraphifyRunner` that collects files, dispatches with qwen-to-openrouter fallthrough, and writes the graph atomically. Output is strict JSON, validated against the schema. Good for messy real-world code where regex breaks.
 
 **Path B: deterministic regex.** `brain/extractors/ffcss.py` is the canonical example - it finds `dt-*` design-token definitions and usages without any LLM. Runs in milliseconds, costs zero, useful as a sanity floor under Path A. Both paths emit the same node and edge shapes, so the federation layer is path-agnostic.
 

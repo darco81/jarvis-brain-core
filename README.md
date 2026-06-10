@@ -1,5 +1,7 @@
 # jarvis-brain-core
 
+[![CI](https://github.com/darco81/jarvis-brain-core/actions/workflows/ci.yml/badge.svg)](https://github.com/darco81/jarvis-brain-core/actions/workflows/ci.yml)
+
 > Educational destylat: how to build a pre-computed semantic map for Claude Code, expose it as 5 native MCP tools, and stop burning tokens on Glob/Grep in a multi-repo codebase.
 >
 > This is not a production multi-tenant system. It is the method, distilled. Production runs privately at [brain.sdet.it](https://brain.sdet.it).
@@ -11,7 +13,7 @@ A 30-file Python project that shows the architecture behind jarvis-brain. Read t
 Core ideas, ordered by how much value each one carries on its own:
 
 1. **Code structure as a graph**, not a vector store. Functions, components, modules, imports, design-token usage. The graph is built once per commit and queried hundreds of times.
-2. **Two ingestion paths** that produce the same shape. Path A: LLM extraction with Qwen-local or Gemini fallback. Path B: deterministic regex skill that runs inside Claude Code. Same graph schema either way.
+2. **Two ingestion paths** that produce the same shape. Path A: LLM extraction with Qwen-local or a hosted fallback (OpenRouter in production). Path B: deterministic regex skill that runs inside Claude Code. Same graph schema either way.
 3. **Federation**: per-repo graphs merge into a group master graph. Cross-repo imports detected. DRY violations on design-token (dt-) prefixes surfaced as `duplicates_token` edges.
 4. **FTS5 + camelCase preprocessing**: SQLite full-text search with a small trick that makes `useUserSession` matchable as `user`, `session`, `useUserSession`, and `use user session` without bloating the index.
 5. **5 MCP tools** exposed over HTTP, shaped to feel native to Claude Code: `brain_query`, `brain_graph`, `brain_path`, `brain_explain`, `brain_ffcss`.
@@ -23,12 +25,13 @@ Core ideas, ordered by how much value each one carries on its own:
 | `brain/extractors/` | Deterministic regex extractors. `ffcss.py` finds `dt-*` design-token definitions and usages in `.scss`/`.css`/`.vue`. |
 | `brain/federation/` | Merges per-repo graphs into a group master. Detects cross-repo imports, canonical vs override tokens, DRY violations. |
 | `brain/llm/prompts.py` | The LLM extraction prompt. Same JSON shape that the regex path emits. |
+| `brain/graphify_adapter/` | Path A machinery: `LLMBackend` protocol, Qwen-local backend with circuit breaker, OpenRouter fallback, `ModelRouter`, `GraphifyRunner`. Needs the `[llm]` extra. |
 | `brain/api/mcp.py` + `mcp_tools.py` | JSON-RPC 2.0 dispatch and Pydantic schemas for the 5 tools. |
 | `brain/api/query.py` + `query_path.py` | FTS5 search endpoint and NetworkX shortest-path endpoint. |
 | `brain/viz/` | Thin facade over [graphifyy](https://pypi.org/project/graphifyy/). Renders the master graph as an interactive HTML page with community detection. |
 | `brain/core/graph_schema.py` | The Pydantic v2 schema all of the above target. Nodes, edges, kinds, relations, confidence levels. |
 | `benchmark/` | The 50-question benchmark methodology. The sample `questions.json` here is 5 generic questions; the production set is anchored to private repos and stays private. |
-| `config/groups.example.yml` | Group/repo topology that the merger consumes. |
+| `config/groups.example.yml` | Example group/repo topology (documentation of the `repo_roles` shape `FederationMerger` takes; nothing in this repo parses YAML). |
 
 ## What is not in this repo
 
@@ -60,6 +63,11 @@ uv pip install -e ".[dev]"
 # Run the in-scope tests
 pytest
 
+# See the whole method end-to-end on synthetic data: builds a master graph,
+# the FTS5 index, demonstrates the camelCase trick ('user' -> useUserSession)
+# and walks a shortest path
+python -m brain.scripts.demo_ingest
+
 # Generate an extraction prompt
 python -c "from brain.llm.prompts import build_extraction_system_prompt; \
            print(build_extraction_system_prompt(include_ffcss=True))"
@@ -69,21 +77,50 @@ python -c "from brain.api.mcp_tools import TOOL_DEFINITIONS; \
            import json; print(json.dumps(TOOL_DEFINITIONS, indent=2))"
 ```
 
-To run the benchmark against your own indexed graph, see `benchmark/runner.py`. The runner requires `BRAIN_DEV_TOKEN` and `BRAIN_URL` env vars pointing at a deployment - the educational version intentionally does not ship a default token.
+## Run the 5 MCP tools in Claude Code
+
+Three commands from clone to a queryable graph (no real codebase needed):
+
+```bash
+uv pip install -e ".[server]"
+
+# 1. persist the demo graph + FTS5 index
+python -m brain.scripts.demo_ingest --data-root ~/.jarvis-brain-demo
+
+# 2. serve all 5 tools over HTTP JSON-RPC (localhost only - the educational
+#    build has no auth, never expose it publicly)
+python -m brain.scripts.serve --data-root ~/.jarvis-brain-demo
+
+# 3. connect Claude Code (in another terminal, inside your project)
+claude mcp add --transport http brain http://127.0.0.1:8000/mcp
+```
+
+Then ask Claude Code something like *"use brain_query to find session
+composables"* - or index your own repos by writing schema-v1 graphs into
+`<data-root>/graphs/<group>/_master/graph.json` and rebuilding the index
+with `APIIndexPublisher`.
+
+Other scripts: `python -m brain.scripts.validate_graph <graph.json>` checks a
+graph against schema v1; `python -m brain.scripts.export_schema` regenerates
+`schemas/graph_v1.json`.
+
+To run the benchmark against your own indexed graph, see `benchmark/runner.py`. Install its extra first (`uv pip install -e ".[benchmark]"` - it pulls the Claude Agent SDK). The brain arm requires `BRAIN_DEV_TOKEN` and `BRAIN_URL` env vars pointing at a deployment - the educational version intentionally does not ship a default token; `--mode baseline` runs without one.
 
 ## The articles
 
 This repo is a companion to the "From the field #02" series on jarvis-brain:
 
 - [Part 1: Stop CC from burning tokens on Grep/Glob](https://portfolio.sdet.it/from-the-field/jarvis-brain-part-1)
-- Part 2: Architecture of the indexing engine (publishes 2026-05-13)
-- Part 3: When this makes sense and when it does not (publishes 2026-05-14)
+- [Part 2: Architecture of the indexing engine](https://portfolio.sdet.it/from-the-field/jarvis-brain-part-2)
+- [Part 3: When this pays off - and when grep is already enough](https://portfolio.sdet.it/from-the-field/jarvis-brain-part-3)
 
 The articles are the narrative. The code in this repo is the receipts.
 
 ## License
 
 [AGPL-3.0](LICENSE). If you deploy a network-accessible service derived from this code, you must publish the source of your derivative under AGPL-3.0 as well.
+
+What that means for the "copy what is useful" invitation above: copying code from this repo into your project makes that project a derivative work under AGPL-3.0 terms. For learning, internal tooling, and open-source projects that is usually fine; if you need these patterns under a permissive license for a closed product, reimplement the method from the articles rather than copying the code - the method is not licensed, only this implementation is.
 
 ## Author
 

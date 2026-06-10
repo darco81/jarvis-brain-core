@@ -1,6 +1,16 @@
 # Example group configuration for jarvis-brain-core.
 #
-# Copy to `groups.yml` (gitignored) and adapt to your local checkouts.
+# This file documents the topology shape - nothing in the educational repo
+# parses it. `FederationMerger` takes the equivalent as plain Python kwargs:
+#
+#     FederationMerger(
+#         detect_cross_repo_imports=True,
+#         detect_ffcss_tokens=False,
+#         repo_roles={"app-core": "core", "app-front-a": "frontend", ...},
+#     )
+#
+# The production deployment reads a groups.yml of this shape to drive the
+# webhook/mirror/worker pipeline (out of scope here).
 #
 # A group is a federated cluster: one "core" repo (shared layers/composables)
 # and N "frontend" repos that import from core. The merger combines per-repo
@@ -10,25 +20,18 @@
 groups:
   example-group:
     description: "Example group - shared core + two brand-variant fronts"
-    auth_mode: dev_tokens
 
     repos:
       - name: app-core
-        github: example-org/app-core
         role: core
-        branch: main
 
       - name: app-front-a
-        github: example-org/app-front-a
         role: frontend
         parent_repo: app-core
-        branch: main
 
       - name: app-front-b
-        github: example-org/app-front-b
         role: frontend
         parent_repo: app-core
-        branch: main
 
     federation:
       enabled: true

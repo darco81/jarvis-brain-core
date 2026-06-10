@@ -1,0 +1,14 @@
+# Patterns that must never appear in this public repo (case-insensitive,
+# word-boundary regex, one per line). This repo is distilled from a private
+# client-facing codebase - CI greps every PR against this list.
+#
+# Intentional public pointers (sdet.it, brain.sdet.it in README) are NOT
+# listed here - only names that identify clients or private internals.
+# Extend it whenever a new private-to-public port introduces a new client,
+# internal hostname, or product codename that has to stay private.
+crehler
+forgefront
+forge-core
+coffeedesk
+exparto
+libra
