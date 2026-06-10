@@ -76,3 +76,16 @@ def test_injection_skipped_for_placeholder_html(tmp_path: Path) -> None:
     # Placeholder has no nodes, no click handler should be injected
     assert "function nodeIdToSlug" not in html
     assert "graph too large for vis-network" in html or "graph too large" in html
+
+
+def test_inject_click_handler_is_noop_on_placeholder_file(tmp_path: Path) -> None:
+    """Direct guard test: _inject_click_handler must leave the placeholder
+    untouched. The v0.1.0 guard checked a stale pre-rebrand title and was
+    dead code - this pins the marker to the HTML the module actually emits."""
+    from brain.viz.insights_wrapper import _PLACEHOLDER_HTML, _inject_click_handler
+
+    html_path = tmp_path / "graph.html"
+    html_path.write_text(_PLACEHOLDER_HTML.format(node_count=10, limit=5))
+    before = html_path.read_text()
+    _inject_click_handler(html_path, {"nodes": [], "edges": []})
+    assert html_path.read_text() == before

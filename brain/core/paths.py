@@ -1,4 +1,11 @@
-"""Filesystem layout helper - enforces spec section 3.1 directory tree."""
+"""Filesystem layout helper - enforces spec section 3.1 directory tree.
+
+The educational pipeline only consumes repo_graph, group_master_graph,
+super_master_graph, vault_index and super_index. The remaining helpers
+(mirror/worktree, poll_state, obsidian/web vaults, graph_history, backups)
+describe the production data root layout and have no consumers here - they
+are kept so the layout reads as one piece.
+"""
 from __future__ import annotations
 
 from dataclasses import dataclass

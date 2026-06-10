@@ -2,7 +2,7 @@
 
 Supports methods:
   - initialize           -> handshake, returns capabilities
-  - tools/list           -> list of 3 brain tools
+  - tools/list           -> list of the 5 brain tools
   - tools/call           -> execute named tool, return result envelope
 
 Errors map to JSON-RPC error codes:
@@ -19,6 +19,7 @@ Errors map to JSON-RPC error codes:
 from __future__ import annotations
 
 import asyncio
+import importlib.metadata
 import json
 import time
 from collections.abc import Awaitable, Callable, Coroutine
@@ -53,6 +54,11 @@ from brain.api.mcp_tools import (
 from brain.core.logging import get_logger
 
 logger = get_logger("api.mcp")
+
+try:
+    _SERVER_VERSION = importlib.metadata.version("jarvis-brain-core")
+except importlib.metadata.PackageNotFoundError:  # running from a raw checkout
+    _SERVER_VERSION = "0.0.0+unknown"
 
 ToolExecutor = Callable[[dict[str, Any]], Awaitable[dict[str, Any]]]
 
@@ -199,7 +205,7 @@ def build_mcp_router(
                 {
                     "protocolVersion": "2024-11-05",
                     "capabilities": {"tools": {}},
-                    "serverInfo": {"name": "jarvis-brain", "version": "0.2.0"},
+                    "serverInfo": {"name": "jarvis-brain", "version": _SERVER_VERSION},
                 },
             )
 

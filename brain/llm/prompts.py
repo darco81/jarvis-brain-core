@@ -1,4 +1,4 @@
-"""Centralized LLM extraction prompts used by Qwen + Gemini backends.
+"""Centralized LLM extraction prompts used by the Path-A LLM backends.
 
 Keeping the system prompt in one place guarantees Path-A (LLM) emits the
 same shapes Path-B (skill regex) emits. Callers pass `include_ffcss` and
