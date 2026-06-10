@@ -123,8 +123,12 @@ def _build_ffcss_executor(
         edges = data.get("edges", [])
 
         def _repo_of(n: dict[str, Any]) -> str | None:
+            # Prefer metadata._repo; masters written by the v0.1.0 merger
+            # carried _repo top-level on nodes.
             m = n.get("metadata") or {}
             r = m.get("_repo")
+            if not isinstance(r, str):
+                r = n.get("_repo")
             return r if isinstance(r, str) else None
 
         if mode == "tokens":
