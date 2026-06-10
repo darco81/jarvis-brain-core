@@ -14,49 +14,47 @@ jobs:
         python-version: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - uses: astral-sh/setup-uv@v5
       - name: Install
-        run: |
-          uv venv
-          uv pip install -e ".[dev,server]"
+        run: uv pip install --system -e ".[dev,server,llm]"
       - name: pytest
-        run: uv run pytest
+        run: python -m pytest
       - name: mypy --strict
-        run: uv run mypy --strict brain/
+        run: python -m mypy --strict brain/
       - name: ruff
-        run: uv run ruff check .
+        run: python -m ruff check .
 
   readme-smoke:
     # The literal commands from the README quick start - catches doc rot.
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: astral-sh/setup-uv@v5
       - name: Install
-        run: |
-          uv venv
-          uv pip install -e ".[dev,server]"
+        run: uv pip install --system -e ".[dev,server,llm]"
       - name: demo_ingest (tmp root)
-        run: uv run python -m brain.scripts.demo_ingest
+        run: python -m brain.scripts.demo_ingest
       - name: demo_ingest --data-root + serve guard
         run: |
-          uv run python -m brain.scripts.demo_ingest --data-root /tmp/jb-demo
+          python -m brain.scripts.demo_ingest --data-root /tmp/jb-demo
           test -f /tmp/jb-demo/graphs/example-group/_master/graph.json
           test -f /tmp/jb-demo/vaults/example-group/index/index.sqlite
       - name: extraction prompt snippet
         run: |
-          uv run python -c "from brain.llm.prompts import build_extraction_system_prompt; \
+          python -c "from brain.llm.prompts import build_extraction_system_prompt; \
                      print(build_extraction_system_prompt(include_ffcss=True))" > /dev/null
       - name: tool schemas snippet
         run: |
-          uv run python -c "from brain.api.mcp_tools import TOOL_DEFINITIONS; \
+          python -c "from brain.api.mcp_tools import TOOL_DEFINITIONS; \
                      import json; print(json.dumps(TOOL_DEFINITIONS, indent=2))" > /dev/null
       - name: schema artifact drift
-        run: uv run python -m brain.scripts.export_schema | diff - schemas/graph_v1.json
+        run: python -m brain.scripts.export_schema | diff - schemas/graph_v1.json
 
   leak-scan:
     runs-on: ubuntu-latest
@@ -71,8 +69,8 @@ jobs:
       - name: client-name denylist (working tree)
         # Tree-only scan: this repo is distilled from a private client
         # codebase and no client identifier may appear in any tracked file.
-        # History is NOT scanned here - the pre-v0.2.0 commits predate this
-        # gate (see RELEASING notes once T11 lands).
+        # History is NOT scanned here - see RELEASING.md for the manual
+        # full-history sweep run before each release.
         run: |
           patterns=$(grep -v '^#' .github/leak-denylist.txt | grep -v '^$' | paste -sd'|' -)
           hits=$(git ls-files | grep -v '^.github/leak-denylist.txt$' \
