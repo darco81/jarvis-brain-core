@@ -1,5 +1,7 @@
 # jarvis-brain-core
 
+[![CI](https://github.com/darco81/jarvis-brain-core/actions/workflows/ci.yml/badge.svg)](https://github.com/darco81/jarvis-brain-core/actions/workflows/ci.yml)
+
 > Educational destylat: how to build a pre-computed semantic map for Claude Code, expose it as 5 native MCP tools, and stop burning tokens on Glob/Grep in a multi-repo codebase.
 >
 > This is not a production multi-tenant system. It is the method, distilled. Production runs privately at [brain.sdet.it](https://brain.sdet.it).
