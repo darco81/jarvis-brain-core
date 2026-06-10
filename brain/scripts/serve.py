@@ -39,6 +39,113 @@ def _repo_of(n: dict[str, Any]) -> str | None:
     return r if isinstance(r, str) else None
 
 
+# Hard cap on ego-graph size - a raw master graph is a context bomb for an
+# agent; past this many nodes the caller should narrow the radius instead.
+_EGO_MAX_NODES = 200
+
+
+def _graph_summary(
+    group: str,
+    repo: str | None,
+    nodes: list[dict[str, Any]],
+    edges: list[dict[str, Any]],
+) -> dict[str, Any]:
+    by_kind: dict[str, int] = {}
+    by_repo: dict[str, int] = {}
+    for n in nodes:
+        kind = str(n.get("kind", "unknown"))
+        by_kind[kind] = by_kind.get(kind, 0) + 1
+        r = _repo_of(n) or "unknown"
+        by_repo[r] = by_repo.get(r, 0) + 1
+    return {
+        "group": group,
+        "repo": repo,
+        "summary": {
+            "total_nodes": len(nodes),
+            "total_edges": len(edges),
+            "nodes_by_kind": dict(sorted(by_kind.items(), key=lambda kv: -kv[1])),
+            "nodes_by_repo": dict(sorted(by_repo.items(), key=lambda kv: -kv[1])),
+        },
+        "hint": (
+            "Pass node_id (e.g. from brain_query) to get the ego-graph "
+            "around a specific node."
+        ),
+    }
+
+
+def _ego_graph(
+    *,
+    group: str,
+    repo: str | None,
+    nodes: list[dict[str, Any]],
+    edges: list[dict[str, Any]],
+    center: str,
+    radius: int,
+    detailed: bool,
+) -> dict[str, Any]:
+    by_id = {n["id"]: n for n in nodes}
+    if center not in by_id:
+        raise HTTPException(
+            status_code=404,
+            detail=f"brain_graph: node not found: {center}",
+        )
+    # Undirected BFS over edge endpoints
+    adjacency: dict[str, set[str]] = {}
+    for e in edges:
+        s, t = e.get("source"), e.get("target")
+        if isinstance(s, str) and isinstance(t, str):
+            adjacency.setdefault(s, set()).add(t)
+            adjacency.setdefault(t, set()).add(s)
+    visited = {center}
+    frontier = {center}
+    for _hop in range(radius):
+        frontier = {
+            nb
+            for node in frontier
+            for nb in adjacency.get(node, set())
+            if nb in by_id
+        } - visited
+        if not frontier:
+            break
+        visited |= frontier
+
+    truncated = len(visited) > _EGO_MAX_NODES
+    kept_ids = set(sorted(visited)[:_EGO_MAX_NODES]) if truncated else visited
+
+    def _shape(n: dict[str, Any]) -> dict[str, Any]:
+        if detailed:
+            return {
+                "id": n["id"],
+                "name": n.get("name"),
+                "kind": n.get("kind"),
+                "file": n.get("file"),
+                "line": n.get("line"),
+                "metadata": n.get("metadata", {}),
+            }
+        return {"id": n["id"], "name": n.get("name"), "kind": n.get("kind")}
+
+    out_nodes = [_shape(by_id[i]) for i in sorted(kept_ids)]
+    out_edges = [
+        e for e in edges
+        if e.get("source") in kept_ids and e.get("target") in kept_ids
+    ]
+    result: dict[str, Any] = {
+        "group": group,
+        "repo": repo,
+        "center": center,
+        "radius": radius,
+        "nodes": out_nodes,
+        "edges": out_edges,
+    }
+    if truncated:
+        result["truncated"] = True
+        result["hint"] = (
+            f"Ego-graph exceeded {_EGO_MAX_NODES} nodes and was cut. "
+            "Lower `radius` or filter with `repo` to narrow it."
+        )
+    return result
+
+
 def build_app(data_root: Path) -> FastAPI:
     """FastAPI app exposing /mcp with all 5 brain tools wired to data_root."""
     paths = DataPaths(root=data_root)
@@ -58,16 +165,27 @@ def build_app(data_root: Path) -> FastAPI:
             )
         data = json.loads(master_path.read_text())
         repo = args.get("repo")
-        nodes = data.get("nodes", [])
+        nodes = [n for n in data.get("nodes", []) if isinstance(n, dict) and "id" in n]
         edges = data.get("edges", [])
         if repo:
             nodes = [n for n in nodes if _repo_of(n) == repo]
-            kept = {n["id"] for n in nodes if "id" in n}
+            kept = {n["id"] for n in nodes}
             edges = [
                 e for e in edges
                 if e.get("source") in kept and e.get("target") in kept
             ]
-        return {"group": group, "repo": repo, "nodes": nodes, "edges": edges}
+        node_id = args.get("node_id")
+        if node_id is None:
+            return _graph_summary(group, repo, nodes, edges)
+        return _ego_graph(
+            group=group,
+            repo=repo,
+            nodes=nodes,
+            edges=edges,
+            center=node_id,
+            radius=args.get("radius", 2),
+            detailed=args.get("response_format", "concise") == "detailed",
+        )
 
     async def path_executor(args: dict[str, Any]) -> dict[str, Any]:
         return shortest_path_payload(

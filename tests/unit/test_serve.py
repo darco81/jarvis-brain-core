@@ -66,14 +66,60 @@ async def test_brain_query_camelcase_trick(demo_app: FastAPI) -> None:
 
 
 @pytest.mark.asyncio
-async def test_brain_graph_repo_filter(demo_app: FastAPI) -> None:
-    full = await _tool(demo_app, "brain_graph", {"group": GROUP})
-    assert len(full["nodes"]) == 5
-    front = await _tool(demo_app, "brain_graph", {"group": GROUP, "repo": "app-front-a"})
-    assert {n["name"] for n in front["nodes"]} == {"LoginButton", "CheckoutPage"}
-    assert all(
-        e["source"].startswith(f"{GROUP}/app-front-a:") for e in front["edges"]
+async def test_brain_graph_without_node_returns_summary_not_dump(
+    demo_app: FastAPI,
+) -> None:
+    out = await _tool(demo_app, "brain_graph", {"group": GROUP})
+    assert "nodes" not in out, "no node_id must mean summary, not a full dump"
+    assert out["summary"]["total_nodes"] == 5
+    assert out["summary"]["nodes_by_kind"] == {"function": 3, "component": 2}
+    assert set(out["summary"]["nodes_by_repo"]) == {"app-core", "app-front-a"}
+
+
+@pytest.mark.asyncio
+async def test_brain_graph_ego_radius_1_vs_2(demo_app: FastAPI) -> None:
+    center = f"{GROUP}/app-front-a:CheckoutPage"
+    r1 = await _tool(demo_app, "brain_graph", {"group": GROUP, "node_id": center, "radius": 1})
+    r2 = await _tool(demo_app, "brain_graph", {"group": GROUP, "node_id": center, "radius": 2})
+    ids1 = {n["id"] for n in r1["nodes"]}
+    ids2 = {n["id"] for n in r2["nodes"]}
+    # radius 1: center + direct neighbors (LoginButton, useCheckoutFlow)
+    assert ids1 == {
+        center,
+        f"{GROUP}/app-front-a:LoginButton",
+        f"{GROUP}/app-core:useCheckoutFlow",
+    }
+    # radius 2 adds LoginButton's core imports
+    assert ids1 < ids2
+    assert f"{GROUP}/app-core:useUserSession" in ids2
+
+
+@pytest.mark.asyncio
+async def test_brain_graph_concise_vs_detailed(demo_app: FastAPI) -> None:
+    center = f"{GROUP}/app-front-a:LoginButton"
+    concise = await _tool(demo_app, "brain_graph", {"group": GROUP, "node_id": center})
+    node = concise["nodes"][0]
+    assert set(node) == {"id", "name", "kind"}
+    detailed = await _tool(
+        demo_app,
+        "brain_graph",
+        {"group": GROUP, "node_id": center, "response_format": "detailed"},
     )
+    dnode = next(n for n in detailed["nodes"] if n["id"] == center)
+    assert "file" in dnode and "metadata" in dnode
+
+
+@pytest.mark.asyncio
+async def test_brain_graph_unknown_node_returns_not_found(demo_app: FastAPI) -> None:
+    body = await _call(
+        demo_app,
+        "tools/call",
+        {
+            "name": "brain_graph",
+            "arguments": {"group": GROUP, "node_id": f"{GROUP}/app-core:Nope"},
+        },
+    )
+    assert body["error"]["code"] == -32004
 
 
 @pytest.mark.asyncio
