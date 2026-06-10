@@ -25,6 +25,7 @@ Core ideas, ordered by how much value each one carries on its own:
 | `brain/extractors/` | Deterministic regex extractors. `ffcss.py` finds `dt-*` design-token definitions and usages in `.scss`/`.css`/`.vue`. |
 | `brain/federation/` | Merges per-repo graphs into a group master. Detects cross-repo imports, canonical vs override tokens, DRY violations. |
 | `brain/llm/prompts.py` | The LLM extraction prompt. Same JSON shape that the regex path emits. |
+| `brain/graphify_adapter/` | Path A machinery: `LLMBackend` protocol, Qwen-local backend with circuit breaker, OpenRouter fallback, `ModelRouter`, `GraphifyRunner`. Needs the `[llm]` extra. |
 | `brain/api/mcp.py` + `mcp_tools.py` | JSON-RPC 2.0 dispatch and Pydantic schemas for the 5 tools. |
 | `brain/api/query.py` + `query_path.py` | FTS5 search endpoint and NetworkX shortest-path endpoint. |
 | `brain/viz/` | Thin facade over [graphifyy](https://pypi.org/project/graphifyy/). Renders the master graph as an interactive HTML page with community detection. |
