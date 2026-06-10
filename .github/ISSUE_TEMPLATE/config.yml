@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security / residual data leak (private report)
+    url: https://sdet.it
+    about: Suspected credential, client identifier, or internal hostname in the tree or git history - report privately via the contact links, not as a public issue.
+  - name: Production deployment questions
+    url: https://sdet.it/services
+    about: Multi-tenant auth, workers, webhooks and deployment are intentionally out of scope here.
