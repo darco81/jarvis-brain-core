@@ -120,6 +120,8 @@ The articles are the narrative. The code in this repo is the receipts.
 
 [AGPL-3.0](LICENSE). If you deploy a network-accessible service derived from this code, you must publish the source of your derivative under AGPL-3.0 as well.
 
+What that means for the "copy what is useful" invitation above: copying code from this repo into your project makes that project a derivative work under AGPL-3.0 terms. For learning, internal tooling, and open-source projects that is usually fine; if you need these patterns under a permissive license for a closed product, reimplement the method from the articles rather than copying the code - the method is not licensed, only this implementation is.
+
 ## Author
 
 Dariusz Kowalski - [LinkedIn](https://www.linkedin.com/in/dar-kow) - [sdet.it](https://sdet.it) - [portfolio.sdet.it](https://portfolio.sdet.it)

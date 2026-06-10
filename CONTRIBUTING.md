@@ -20,6 +20,12 @@ Out of scope (please do not PR these here):
 
 If you are unsure whether your change fits, open an issue first and ask.
 
+Why the hard boundary: the production system behind this repo is a
+commercial deployment. PRs that rebuild its surface here will be closed
+regardless of code quality - the boundary is the point, not an oversight.
+Modules ported *from* the private repo follow the sanitization checklist
+in [RELEASING.md](RELEASING.md).
+
 ## Commit message style
 
 Conventional commits. Keep the subject line under 70 characters; explain the *why* in the body.
