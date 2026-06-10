@@ -110,7 +110,14 @@ def _ego_graph(
         visited |= frontier
 
     truncated = len(visited) > _EGO_MAX_NODES
-    kept_ids = set(sorted(visited)[:_EGO_MAX_NODES]) if truncated else visited
+    if truncated:
+        # Keep the center unconditionally - a deterministic slice of the
+        # neighborhood must never evict the node the caller asked about.
+        kept_ids = {center} | set(
+            sorted(visited - {center})[: _EGO_MAX_NODES - 1]
+        )
+    else:
+        kept_ids = visited
 
     def _shape(n: dict[str, Any]) -> dict[str, Any]:
         if detailed:

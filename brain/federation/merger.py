@@ -155,9 +155,17 @@ class FederationMerger:
         (`super`/`groups`), not a Graph v1 document - unlike `merge_group` output.
         """
         groups = [g for g, _ in group_masters]
+        # Strip the Graph-v1 envelope so the super-master carries exactly one
+        # envelope (version/super/groups) - leaving schema_version on the
+        # copy would misclassify it as a per-repo Graph v1 document.
+        graph_v1_envelope = {
+            "group", "schema_version", "repo", "built_at", "built_by", "stats"
+        }
         if len(group_masters) == 1:
             _, master = group_masters[0]
-            copy = {k: v for k, v in master.items() if k != "group"}
+            copy = {
+                k: v for k, v in master.items() if k not in graph_v1_envelope
+            }
             copy["version"] = 1
             copy["super"] = True
             copy["groups"] = groups

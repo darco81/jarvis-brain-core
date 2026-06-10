@@ -91,3 +91,21 @@ def test_fanout_respects_limit(tmp_path: Path) -> None:
     paths = DataPaths(root=tmp_path)
     hits = _route_query(paths, "cart", scope=None, limit=4)
     assert len(hits) == 4
+
+
+def test_quoted_phrase_query_keeps_phrase_semantics(tmp_path: Path) -> None:
+    """'"exact phrase"' must match the phrase, not the reversed bag of words.
+
+    v0.1.0 doubled quotes before MATCH, silently degrading the documented
+    phrase syntax into an AND of terms.
+    """
+    db = _publish(
+        tmp_path,
+        "g",
+        [
+            _node("g", "r", "exactPhrase"),     # label: 'exactPhrase exact Phrase'
+            _node("g", "r", "phraseExact"),     # reversed order
+        ],
+    )
+    hits = _search(db, '"exact phrase"', limit=10, repo_filter=None)
+    assert [h["node_id"] for h in hits] == ["g/r:exactPhrase"]
