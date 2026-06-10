@@ -146,13 +146,13 @@ def _inject_click_handler(html_path: Path, extraction: dict[str, Any]) -> None:
         return
     # Detect placeholder HTML - no vis-network instance, no nodes to click.
     # Title is stable across theme changes; body text may be restyled.
-    if "JARVIS-BRAIN :: GRAPH TOO LARGE" in html or "GRAPH OVER SIZE LIMIT" in html:
+    if "brain-core :: graph too large" in html:
         return
     if "</body>" not in html:
         return  # malformed - don't touch
     map_tag = _build_brain_id_map_script(extraction)
     handler = _CLICK_HANDLER_JS % NODE_ID_TO_SLUG_JS
-    # _VIS_PERF_AND_NAV_JS adds CRT nav bar + vis-network perf opts
+    # _VIS_PERF_AND_NAV_JS adds vis-network perf opts
     injection = _VIS_PERF_AND_NAV_JS + map_tag + handler
     # Inject before LAST </body> to be safe with nested templates
     idx = html.rfind("</body>")

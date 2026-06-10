@@ -13,7 +13,7 @@ A 30-file Python project that shows the architecture behind jarvis-brain. Read t
 Core ideas, ordered by how much value each one carries on its own:
 
 1. **Code structure as a graph**, not a vector store. Functions, components, modules, imports, design-token usage. The graph is built once per commit and queried hundreds of times.
-2. **Two ingestion paths** that produce the same shape. Path A: LLM extraction with Qwen-local or Gemini fallback. Path B: deterministic regex skill that runs inside Claude Code. Same graph schema either way.
+2. **Two ingestion paths** that produce the same shape. Path A: LLM extraction with Qwen-local or a hosted fallback (OpenRouter in production). Path B: deterministic regex skill that runs inside Claude Code. Same graph schema either way.
 3. **Federation**: per-repo graphs merge into a group master graph. Cross-repo imports detected. DRY violations on design-token (dt-) prefixes surfaced as `duplicates_token` edges.
 4. **FTS5 + camelCase preprocessing**: SQLite full-text search with a small trick that makes `useUserSession` matchable as `user`, `session`, `useUserSession`, and `use user session` without bloating the index.
 5. **5 MCP tools** exposed over HTTP, shaped to feel native to Claude Code: `brain_query`, `brain_graph`, `brain_path`, `brain_explain`, `brain_ffcss`.
@@ -30,7 +30,7 @@ Core ideas, ordered by how much value each one carries on its own:
 | `brain/viz/` | Thin facade over [graphifyy](https://pypi.org/project/graphifyy/). Renders the master graph as an interactive HTML page with community detection. |
 | `brain/core/graph_schema.py` | The Pydantic v2 schema all of the above target. Nodes, edges, kinds, relations, confidence levels. |
 | `benchmark/` | The 50-question benchmark methodology. The sample `questions.json` here is 5 generic questions; the production set is anchored to private repos and stays private. |
-| `config/groups.example.yml` | Group/repo topology that the merger consumes. |
+| `config/groups.example.yml` | Example group/repo topology (documentation of the `repo_roles` shape `FederationMerger` takes; nothing in this repo parses YAML). |
 
 ## What is not in this repo
 
@@ -103,15 +103,15 @@ Other scripts: `python -m brain.scripts.validate_graph <graph.json>` checks a
 graph against schema v1; `python -m brain.scripts.export_schema` regenerates
 `schemas/graph_v1.json`.
 
-To run the benchmark against your own indexed graph, see `benchmark/runner.py`. The runner requires `BRAIN_DEV_TOKEN` and `BRAIN_URL` env vars pointing at a deployment - the educational version intentionally does not ship a default token.
+To run the benchmark against your own indexed graph, see `benchmark/runner.py`. Install its extra first (`uv pip install -e ".[benchmark]"` - it pulls the Claude Agent SDK). The brain arm requires `BRAIN_DEV_TOKEN` and `BRAIN_URL` env vars pointing at a deployment - the educational version intentionally does not ship a default token; `--mode baseline` runs without one.
 
 ## The articles
 
 This repo is a companion to the "From the field #02" series on jarvis-brain:
 
 - [Part 1: Stop CC from burning tokens on Grep/Glob](https://portfolio.sdet.it/from-the-field/jarvis-brain-part-1)
-- Part 2: Architecture of the indexing engine (publishes 2026-05-13)
-- Part 3: When this makes sense and when it does not (publishes 2026-05-14)
+- [Part 2: Architecture of the indexing engine](https://portfolio.sdet.it/from-the-field/jarvis-brain-part-2)
+- [Part 3: When this pays off - and when grep is already enough](https://portfolio.sdet.it/from-the-field/jarvis-brain-part-3)
 
 The articles are the narrative. The code in this repo is the receipts.
 

@@ -30,10 +30,6 @@ dependencies = [
 viz = [
     "graphifyy==0.4.23",
 ]
-# LLM extraction backends (Path A). Path B (regex skill) needs nothing extra.
-llm = [
-    "google-genai>=0.3",
-]
 # Runnable MCP server (brain.scripts.serve).
 server = [
     "uvicorn>=0.30",

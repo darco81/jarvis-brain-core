@@ -49,7 +49,7 @@ def _route_query(
         if not idx.exists():
             raise HTTPException(
                 status_code=404,
-                detail="super index not built - wait for first cron",
+                detail="super index not built - publish it first (see super_index publisher)",
             )
         return _search(idx, q, limit, repo_filter=None)
 

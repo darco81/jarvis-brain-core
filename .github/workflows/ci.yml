@@ -55,6 +55,8 @@ jobs:
         run: |
           uv run python -c "from brain.api.mcp_tools import TOOL_DEFINITIONS; \
                      import json; print(json.dumps(TOOL_DEFINITIONS, indent=2))" > /dev/null
+      - name: schema artifact drift
+        run: uv run python -m brain.scripts.export_schema | diff - schemas/graph_v1.json
 
   leak-scan:
     runs-on: ubuntu-latest
