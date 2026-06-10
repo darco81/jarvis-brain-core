@@ -81,7 +81,11 @@ def test_merge_group_skips_malformed_nodes_and_edges() -> None:
 def test_merge_group_empty_inputs() -> None:
     merger = FederationMerger(detect_cross_repo_imports=False)
     master = merger.merge_group(group="g", repo_graphs=[])
-    assert master == {"version": 1, "group": "g", "nodes": [], "edges": []}
+    assert master["schema_version"] == "v1"
+    assert master["group"] == "g"
+    assert master["repo"] == "_master"
+    assert master["nodes"] == []
+    assert master["edges"] == []
 
 
 def test_merge_group_runs_ffcss_resolver_when_flag_set() -> None:

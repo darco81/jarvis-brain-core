@@ -52,7 +52,7 @@ def detect_cross_repo_imports(
                         "source_repo": repo,
                         "target_repo": core,
                         "relation": "imports_from_parent_repo",
-                        "confidence": "EXTRACTED",
+                        "confidence": "extracted",
                     }
                 )
     return out
