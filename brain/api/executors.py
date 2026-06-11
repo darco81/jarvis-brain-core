@@ -61,18 +61,17 @@ def _build_explain_executor(
         out: list[dict[str, Any]] = []
         inn: list[dict[str, Any]] = []
         for e in data.get("edges", []):
-            if e["source"] == node_id:
-                out.append({
-                    "id": e["target"],
-                    "relation": e["relation"],
-                    "confidence": e.get("confidence", ""),
-                })
-            elif e["target"] == node_id:
-                inn.append({
-                    "id": e["source"],
-                    "relation": e["relation"],
-                    "confidence": e.get("confidence", ""),
-                })
+            # Edges are guaranteed source+target by the merger, but relation
+            # is optional - read defensively so a relation-less edge yields a
+            # blank relation instead of a -32603 KeyError.
+            src = e.get("source")
+            tgt = e.get("target")
+            rel = e.get("relation", "")
+            conf = e.get("confidence", "")
+            if src == node_id:
+                out.append({"id": tgt, "relation": rel, "confidence": conf})
+            elif tgt == node_id:
+                inn.append({"id": src, "relation": rel, "confidence": conf})
         last_commit = n.get("metadata", {}).get("last_commit")
         provenance = None
         if isinstance(last_commit, dict):

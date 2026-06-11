@@ -161,3 +161,21 @@ def test_query_path_exceeds_max_hops_returns_404(tmp_path: Path) -> None:
     )
     assert resp.status_code == 404
     assert "max_hops" in resp.json()["detail"]
+
+
+def test_shortest_path_rejects_cross_group_with_422() -> None:
+    """from_node and to_node in different groups: only from_node's group
+    graph is loaded, so the old behaviour was a confusing 404 'node not
+    found'. It must be a clear 422 instead. The guard fires before any
+    filesystem access, so the graphs_base path is irrelevant."""
+    import pytest
+    from fastapi import HTTPException
+
+    from brain.api.query_path import shortest_path_payload
+
+    with pytest.raises(HTTPException) as exc:
+        shortest_path_payload(
+            Path("/nonexistent"), "group-a/repo:Foo", "group-b/repo:Bar"
+        )
+    assert exc.value.status_code == 422
+    assert "cross-group" in str(exc.value.detail).lower()

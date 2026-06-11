@@ -128,3 +128,40 @@ def test_empty_master_returns_zero_section() -> None:
         "coverage_per_repo": {},
         "most_used_tokens": [],
     }
+
+
+def test_dry_violation_repos_handle_ids_with_embedded_colons() -> None:
+    """dry_violations[].repos is derived via _token_repo. Node ids are
+    'group/repo:original_id' and original_id may contain colons (merger
+    docstring). When metadata._repo is absent the repo must still be
+    'repo', not a colon-suffixed fragment."""
+    from brain.viz.insights_ffcss import build_ffcss_section
+
+    master = {
+        "nodes": [
+            {
+                "id": "g/repoA:ffcss:radius:md",  # original_id = 'ffcss:radius:md'
+                "kind": "ffcss_token",
+                "name": "radius-md",
+                "metadata": {"canonical": False, "value": "8px"},  # NO _repo
+            },
+            {
+                "id": "g/repoB:ffcss:radius:md",
+                "kind": "ffcss_token",
+                "name": "radius-md",
+                "metadata": {"canonical": False, "value": "8px"},  # NO _repo
+            },
+        ],
+        "edges": [
+            {
+                "source": "g/repoA:ffcss:radius:md",
+                "target": "g/repoB:ffcss:radius:md",
+                "relation": "duplicates_token",
+                "confidence": "inferred",
+            },
+        ],
+    }
+    section = build_ffcss_section(master)
+    dry = section["dry_violations"]
+    assert len(dry) == 1
+    assert sorted(dry[0]["repos"]) == ["repoA", "repoB"]
