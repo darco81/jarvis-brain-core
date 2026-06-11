@@ -222,3 +222,20 @@ async def test_missing_jsonrpc_version_returns_invalid_request() -> None:
         )
     body = resp.json()
     assert body["error"]["code"] == -32600
+
+
+def test_result_count_reads_brain_graph_summary_shape() -> None:
+    """brain_graph without node_id returns a summary (count nested under
+    'summary.total_nodes'), so the audit log must not record 0 for it."""
+    from brain.api.mcp import _result_count
+
+    summary_payload = {
+        "group": "g",
+        "repo": None,
+        "summary": {"total_nodes": 5, "total_edges": 4},
+        "hint": "...",
+    }
+    assert _result_count(summary_payload) == 5
+    # ego-graph and list shapes still work
+    assert _result_count({"nodes": [{}, {}]}) == 2
+    assert _result_count({"hits": [{}]}) == 1

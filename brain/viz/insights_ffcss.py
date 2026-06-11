@@ -17,10 +17,11 @@ def _token_repo(node: dict[str, Any]) -> str | None:
         return repo
     nid_raw = node.get("id", "")
     nid = nid_raw if isinstance(nid_raw, str) else ""
-    if ":" in nid and "/" in nid:
-        prefix = nid.rsplit(":", 2)[0]
-        if "/" in prefix:
-            return prefix.split("/", 1)[1]
+    # id is 'group/repo:original_id'; original_id may itself contain colons,
+    # so forward-parse: repo is between the first '/' and the first ':'.
+    if "/" in nid and ":" in nid:
+        repo = nid.split("/", 1)[1].split(":", 1)[0]
+        return repo or None
     return None
 
 

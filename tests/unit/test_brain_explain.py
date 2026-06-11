@@ -96,3 +96,26 @@ async def test_brain_explain_provenance_is_none_when_missing(tmp_path: Path) -> 
     exec_fn = _build_explain_executor(DataPaths(root=tmp_path))
     out = await exec_fn({"node_id": "example-group/example-front-a:useCart"})
     assert out["provenance"] is None
+
+
+@pytest.mark.asyncio
+async def test_brain_explain_tolerates_edge_without_relation(tmp_path: Path) -> None:
+    """An edge lacking 'relation' (merger only requires source+target) must
+    not raise KeyError -> -32603; it should surface with a blank relation."""
+    from brain.api.executors import _build_explain_executor
+    from brain.core.paths import DataPaths
+
+    master = {
+        "nodes": [
+            {"id": "g/r:A", "name": "A", "kind": "function"},
+            {"id": "g/r:B", "name": "B", "kind": "function"},
+        ],
+        "edges": [
+            {"source": "g/r:A", "target": "g/r:B"},  # no 'relation', no 'confidence'
+        ],
+    }
+    mp = tmp_path / "graphs" / "g" / "_master" / "graph.json"
+    mp.parent.mkdir(parents=True)
+    mp.write_text(json.dumps(master))
+    out = await _build_explain_executor(DataPaths(root=tmp_path))({"node_id": "g/r:A"})
+    assert out["neighbors_out"] == [{"id": "g/r:B", "relation": "", "confidence": ""}]
