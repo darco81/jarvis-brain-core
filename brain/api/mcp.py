@@ -98,13 +98,19 @@ def _content_envelope(payload: dict[str, Any]) -> dict[str, Any]:
 
 
 def _result_count(result: Any) -> int:
-    """Best-effort count for audit log across the three tool response shapes."""
+    """Best-effort count for audit log across the tool response shapes."""
     if not isinstance(result, dict):
         return 0
     for key in ("results", "hits", "nodes", "path"):
         value = result.get(key)
         if isinstance(value, list):
             return len(value)
+    # brain_graph without node_id returns a summary, not a list.
+    summary = result.get("summary")
+    if isinstance(summary, dict):
+        total = summary.get("total_nodes")
+        if isinstance(total, int):
+            return total
     return 0
 
 

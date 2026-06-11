@@ -83,6 +83,15 @@ def shortest_path_payload(
             f"{from_node}",
         )
     group = from_node.split("/", 1)[0]
+    # Only from_node's group master is loaded, so a to_node in another group
+    # could never be found - reject it with a clear 422 rather than a
+    # misleading 404 'node not found'.
+    if "/" in to_node and to_node.split("/", 1)[0] != group:
+        raise HTTPException(
+            422,
+            "cross-group paths are not supported: from_node is in "
+            f"'{group}', to_node is in '{to_node.split('/', 1)[0]}'",
+        )
     g = _load_master_graph(graphs_base, group)
 
     try:
